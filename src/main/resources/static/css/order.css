@@ -1,0 +1,360 @@
+body {
+    background-color: #E5E5E5;
+}
+
+.main {
+    width: 100%;
+    min-width: 1290px;
+    position: relative;
+}
+
+.main .cart {
+    width: 100%;
+    max-width: 1290px;
+    margin: 0 auto;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+}
+
+/*
+    left user
+ */
+.main .cart .user {
+    width: 360px;
+}
+
+.main .cart .user .switch {
+    width: 100%;
+    height: 100px;
+    background-color: #FFFFFF;
+    /*box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);*/
+    overflow: hidden;
+    position: relative;
+}
+
+.main .cart .user .switch .container {
+    width: 330px;
+    margin: 30px 15px 0;
+}
+
+.main .cart .user .switch .container #cart-list {
+    background-color: #B2B2B2;
+}
+
+.main .cart .user .switch .container #order-list {
+    background-color: #FF7F00;
+}
+
+.main .cart .user .info {
+    width: 100%;
+    margin: 30px 0 0;
+    padding-bottom: 15px;
+    background-color: #FFFFFF;
+    /*box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);*/
+}
+
+.main .cart .user .info .title {
+    width: 100%;
+    height: 40px;
+    background-color: #acacac;
+    line-height: 40px;
+}
+
+.main .cart .user .info .title p {
+    margin-left: 20px;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+.main .cart .user .info .container {
+    width: 330px;
+    margin: 15px 15px 0 15px;
+}
+
+.main .cart .user .info .container .msg {
+    margin-bottom: 30px;
+}
+
+.main .cart .user .info .container .msg p {
+    font-size: 16px;
+    color: #4D4D4D;
+    margin-bottom: 12px;
+}
+
+.main .cart .user .info .container .btns #recharge {
+    background-color: #FF0086;
+}
+
+.main .cart .user .info .container .btns #edit-pw {
+    background-color: #37ADDB;
+}
+
+/*
+    right
+ */
+.main .cart .list {
+    width: 900px;
+}
+
+.main .cart .list .title {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    display: -webkit-flex;
+    position: relative;
+
+    background-color: #FFFFFF;
+    /*box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);*/
+    font-size: 13px;
+    color: #7F7F7F;
+    line-height: 30px;
+}
+
+.main .cart .list .title .name {
+    width: 250px;
+    height: 100%;
+    margin-left: 75px;
+}
+
+.main .cart .list .title .price {
+    width: 100px;
+    height: 100%;
+    margin-left: 20px;
+    text-align: center;
+}
+
+.main .cart .list .title .bdyun-url {
+    width: 430px;
+    height: 100%;
+    margin-left: 20px;
+    text-align: center;
+}
+
+/*
+    item
+ */
+.main .cart .list .item {
+    width: 100%;
+    height: 80px;
+    margin: 10px 0 0;
+    display: flex;
+    display: -webkit-flex;
+    background-color: #FFFFFF;
+    /*box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);*/
+}
+
+/* image */
+.main .cart .list .item .inner {
+    width: 100%;
+    margin: 5px;
+    height: 70px;
+    display: flex;
+    display: -webkit-flex;
+}
+
+.main .cart .list .item .inner .image {
+    width: 50px;
+    height: 100%;
+}
+
+.main .cart .list .item .inner .image img {
+    width: 50px;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    outline: 1px solid #c0c0c0;
+}
+
+/* info */
+.main .cart .list .item .inner .info {
+    margin-left: 20px;
+    width: 820px;
+    height: 100%;
+    display: flex;
+    display: -webkit-flex;
+    font-size: 16px;
+}
+
+/* 内容 */
+.main .cart .list .item .inner .info .content {
+    width: 250px;
+    height: 100%;
+    position: relative;
+}
+
+.main .cart .list .item .inner .info .content .name {
+    width: 240px;
+    height: 42px;
+    margin-top: 2px;
+    line-height: 1.3em;
+    overflow: hidden;
+}
+
+.main .cart .list .item .inner .info .content .name a {
+    color: #4C4C4C;
+    font-size: 14px;
+}
+
+/* 标签 */
+.main .cart .list .item .inner .info .content .tags {
+    width: 190px;
+    height: 18px;
+    position: absolute;
+    bottom: 2px;
+    margin-left: 1px;
+}
+
+.main .cart .list .item .inner .info .content .tags .container {
+    width: 190px;
+    height: 18px;
+    font-size: 12px;
+    white-space: nowrap;
+    line-height: 18px;
+    text-align: center;
+    color: #fff;
+}
+
+.main .cart .list .item .inner .info .content .tags .container .tags-flex {
+    display: flex;
+    display: -webkit-flex;
+    margin: 0 -2px;
+}
+
+.main .cart .list .item .inner .info .content .tags .container .tags-flex .tag {
+    margin: 0 1px;
+    padding: 0 4px;
+    height: 18px;
+    flex: 1;
+    -webkit-flex: 1;
+}
+/* 标签 end */
+
+/* 时间 */
+.main .cart .list .item .inner .info .date {
+    margin-left: 40px;
+    width: 200px;
+    height: 100%;
+    text-align: center;
+    line-height: 70px;
+}
+
+/* 时间 */
+.main .cart .list .item .inner .info .price {
+    margin-left: 20px;
+    width: 100px;
+    height: 100%;
+    line-height: 70px;
+    text-align: center;
+}
+
+/*
+    order
+*/
+.main .cart .list .item .inner .info .bdyun-url {
+    width: 430px;
+    height: 100%;
+    margin-left: 20px;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+
+    overflow: hidden;
+
+    font-size: 12px;
+    color: #4D4D4D;
+    /*background-color: #00C1B3;*/
+}
+
+/*
+    buttons
+ */
+.main .cart .user .btns {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+}
+
+.main .cart .user .btns a {
+    color: #FFFFFF;
+}
+
+.main .cart .user .btns .btn {
+    width: 160px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+
+/*
+    order
+*/
+.order-title {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    display: -webkit-flex;
+    position: relative;
+
+    /*background-color: #00C1B3;*/
+    font-size: 13px;
+    color: #7F7F7F;
+    line-height: 20px;
+    margin-top: 10px;
+    margin-bottom: -8px;
+}
+
+.order-title .date {
+    width: 170px;
+    height: 100%;
+    margin-left: 5px;
+}
+
+.order-title .info {
+    width: 150px;
+    height: 100%;
+    margin-left: 5px;
+}
+
+/*
+.main .cart .list .title {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    display: -webkit-flex;
+    position: relative;
+
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    font-size: 13px;
+    color: #7F7F7F;
+    line-height: 30px;
+}
+
+.main .cart .list .title .name {
+    width: 250px;
+    height: 100%;
+    margin-left: 75px;
+}
+
+.main .cart .list .title .price {
+    width: 100px;
+    height: 100%;
+    margin-left: 20px;
+    text-align: center;
+}
+
+.main .cart .list .title .bdyun-url {
+    width: 430px;
+    height: 100%;
+    margin-left: 20px;
+    text-align: center;
+}
+*/

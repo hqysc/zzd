@@ -1,0 +1,101 @@
+.img-sortable {
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    width: 1020px;
+}
+
+.img-sortable li {
+    width: 130px;
+    height: 160px;
+    float: left;
+    font-size: 12px;
+    text-align: center;
+    /*background: #69add2;*/
+    /* top right bottom left */
+    margin: 35px 20px;
+}
+
+.sort-li button {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    margin-top: 1px;
+    margin-left: 96px;
+    opacity: 0;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    cursor:pointer;
+    background-color: rgba(0,0,0,0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* 延时 */
+    -webkit-transition: all .2s  linear;
+    -moz-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+}
+
+.sort-li button:hover{
+    opacity: 1;
+}
+
+.sort-li span {
+    color: rgba(255, 0, 0, 0.73);
+    font-size: 36px;
+    margin-top: -3px;
+}
+
+.sort-li p {
+    width: 150px;
+    margin-left: -10px;
+}
+
+.img-sortable img {
+    width: 130px;
+    height: 160px;
+    margin-bottom: 5px;
+    object-fit: cover;
+    object-position: top;
+    outline: 1px solid #aeaeae;
+}
+
+.no-sort-li button {
+    background-color: rgba(1, 1, 1, 0);
+    width: 130px;
+    height: 160px;
+    border: 2px dashed #aaaaaa;
+    border-radius: 5px;
+    outline: none;
+    cursor:pointer;
+    color: #a1a1a1;
+
+    /* 延时 */
+    -webkit-transition: all .1s  linear;
+    -moz-transition: all .1s linear;
+    -o-transition: all .1s linear;
+    transition: all .1s linear;
+}
+
+.no-sort-li button:hover {
+    color: #848484;
+    border-color: #848484;
+}
+
+.no-sort-li button span {
+    margin-top: 10px;
+    font-size: 35px;
+}
+
+.no-sort-li button p {
+    font-size: 14px;
+}
+
+/* 占位符 */
+.img-sortable-placeh {
+    border: 2px dashed #aaaaaa;
+    border-radius: 5px;
+}

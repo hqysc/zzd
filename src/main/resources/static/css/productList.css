@@ -1,0 +1,160 @@
+/* ------------------------------ Main ------------------------------ */
+.rt {
+    width: 100%;
+    max-width: 1290px;
+    min-width: 1290px;
+    margin: 0 auto;
+}
+
+.main-list {
+    display: block;
+    margin: 0 -15px;
+    font-size: 0;
+}
+
+.list-title {
+    padding-top: 80px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.list-title h2 {
+    font-size: 30px;
+    color: #2e2a2b;
+}
+
+.btn-more a {
+    color: #0f0f0f;
+    text-align: center;
+}
+
+.btn-more a:hover {
+    color: #0f0f0f;
+}
+
+.btn-more p {
+    width: 168px;
+    height: 38px;
+    margin: 0 auto;
+    background: #fff;
+    line-height: 40px;
+    font-size: 16px;
+}
+
+.item {
+    position: relative;
+    display: inline-block;
+
+}
+
+/* ------------------------------ Item inner ------------------------------ */
+.item-inner {
+    width: 190px;
+    /* top right bottom left */
+    margin: 0 15px 30px;
+    position: relative;
+    text-align: left;
+    /*box-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);*/
+
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    -o-transition: all .1s linear;
+    transition: all .1s linear;
+}
+
+.item-inner:hover {
+    /*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);*/
+}
+
+.item-img {
+    display: block;
+}
+
+.item-img img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    /*left: 0;*/
+    position: relative;
+    background-color: #FFF;
+}
+
+.item-tag {
+    width: 100%;
+    height: 22px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tag-content{
+    width: 190px;
+    height: 100%;
+    position: absolute;
+    font-size: 12px;
+    white-space: nowrap;
+    line-height: 18px;
+    text-align: center;
+    color: #fff;
+}
+
+.tag-flex {
+    display: flex;
+    display: -webkit-flex;
+    margin: 0 -2px;
+}
+
+.tag {
+    margin: 2px 1px;
+    padding: 0 4px;
+    height: 18px;
+    flex: 1;
+}
+
+.item-bar {
+    width: 190px;
+    height: 50px;
+    background-color: #fff;
+    position: relative;
+}
+
+.bar-content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.item-bar .bar-content .info {
+    float: left;
+    width: calc(100% - 28px);
+    height: calc(100% - 4px);
+    line-height: 22px;
+    font-size: 14px;
+    margin-left: 6px;
+    margin-top: 2px;
+}
+
+.item-bar .bar-content .info a {
+    color: #2e2a2b;
+}
+
+.item-bar .bar-content .info a:hover {
+    color: #7a99f2;
+}
+
+.item-bar .bar-content .join {
+    float: right;
+    width: 15px;
+    margin-right: 4px;
+    height: 100%;
+}
+
+.item-bar .bar-content .join .btn-join {
+    width: 15px;
+    height: 15px;
+    background: url("../icon/join.png")  no-repeat ;
+    background-size: contain;
+    position: absolute; /* 相对于容器绝对定位 */
+    bottom: 4px;
+}

@@ -1,0 +1,81 @@
+body {
+    background-color: #E5E5E5;
+}
+
+.main {
+    width: 100%;
+    min-width: 1290px;
+    margin: 0 0 50px;
+    position: relative;
+}
+
+.main .help {
+    width: 100%;
+    max-width: 1290px;
+    margin: 0 auto;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+}
+
+/*
+    help List Item
+*/
+.main .help .list {
+    width: 360px;
+    background-color: #FFFFFF;
+}
+
+.main .help .list .inner{
+    width: 280px;
+    margin: 20px 40px;
+}
+
+/* title */
+.main .help .list .inner .title {
+    color: #7F7F7F;
+    font-family: "微软雅黑";
+    line-height: 1.4em;
+}
+
+.main .help .list .inner .title h2 {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.main .help .list .inner .title p {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+/* item */
+.main .help .list .inner .item {
+    margin-top: 35px;
+    font-size: 18px;
+    line-height: 1.7em;
+}
+
+.main .help .list .inner .item h2 {
+    font-size: 18px;
+    color: #151515;
+    font-weight: normal;
+}
+
+.main .help .list .inner .item p {
+    color: #7F7F7F;
+}
+
+/*
+    Page Content
+*/
+.main .help .content{
+    width: 900px;
+    background-color: #FFFFFF;
+}
+
+.main .help .content .inner{
+    width: 860px;
+    height: 1000px;
+    margin: 20px;
+}

@@ -1,0 +1,22 @@
+.bread-crumbs {
+    width: 1290px;
+    height: 25px;
+    margin: 25px auto 0;
+
+    font-size: 12px;
+    font-family: 微软雅黑;
+    color: #7F7F7F;
+}
+
+.bread-crumbs a {
+    color: #7F7F7F;
+}
+
+.bread-crumbs li {
+    float: left;
+    margin-right: 6px;
+}
+
+.bread-crumbs .title {
+    margin-right: 10px;
+}

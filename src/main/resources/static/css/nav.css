@@ -1,0 +1,124 @@
+.nav {
+    top: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    position: fixed;
+    z-index: 999;
+}
+
+.nav .inner {
+    width: 100%;
+    max-width: 1290px;
+    height: 100%;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+}
+
+/*
+    left
+*/
+.nav .inner .left {
+    height: 100%;
+}
+
+.nav .inner .left .logo {
+    padding: 0;
+    margin-right: 20px;
+    width: 90px;
+    height: 50px;
+    background: url("../icon/zzd_logo.jpg")  no-repeat;
+    background-size: 90px 30px;
+    background-position: center;
+}
+
+.nav .inner .right .weixin {
+    padding: 0 10px;
+    width: 36px;
+    height: 50px;
+    background: url("../icon/wechat_logo.jpg")  no-repeat;
+    background-size: 36px 30px;
+    background-position: right;
+}
+
+.nav .inner .left a {
+    font-size: 16px;
+    color: #666;
+}
+
+.nav .inner .left ul {}
+
+.nav .inner .left ul li {
+    padding: 0 20px;
+    line-height: 50px;
+    height: 50px;
+    float: left;
+}
+
+/*
+    right
+*/
+.nav .inner .right {
+    height: 100%;
+}
+
+.nav .inner .right a {
+    font-size: 16px;
+    color: #666;
+}
+
+.nav .inner .right ul {
+
+}
+
+.nav .inner .right ul li {
+    padding: 0 20px;
+    line-height: 50px;
+    height: 50px;
+    float: right;
+}
+
+.nav .inner .right ul .reg {
+    background-color: #f0ad4e;
+    color: #fff;
+}
+
+/*
+    right search
+ */
+.nav .inner .right .search {
+    width: 260px;
+    margin-top: 11px;
+    position: relative;
+}
+
+.nav .inner .right .searchText {
+    width: 260px;
+    height: 25px;
+    border: 2px solid #B2B2B2;
+    border-radius: 6px;
+    outline: none;
+    position: absolute;
+    padding: 0 10px;
+}
+
+.nav .inner .right .seatch-btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    margin-left: 275px;
+    position: absolute;
+}
+
+/*
+    间距
+*/
+.nav-bottoms {
+    position: relative;
+    width: 100%;
+    height: 50px;
+}
+

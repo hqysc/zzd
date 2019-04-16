@@ -1,0 +1,59 @@
+body {
+    background-color: #f5f4f4;
+}
+
+.main {
+    width: 100%;
+    min-width: 1290px;
+}
+
+.cate {
+    width: 1290px;
+    margin: 0 auto 50px;
+    overflow: hidden;
+    position: relative;
+    background-color: #fff;
+}
+
+.cate .list .content {
+    width: 100%;
+    font-size: 0;
+    margin: 20px 40px;
+}
+
+.cate .list .content .title {
+    color: #404040;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 20px;
+    vertical-align: top;
+}
+
+.cate .list .content ul {
+    width: 90%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.cate .list .content ul li {
+    display: inline-block;
+    padding: 0 10px 10px;
+}
+
+.cate .list .content ul li a {
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+}
+
+.cate .list .content ul li a:hover {
+    color: #7a99f2;
+}
+
+/* 分割线 */
+.cate .bottom {
+    width: 100%;
+    height: 50px;
+    border-top: 1px solid #ebebeb;
+}

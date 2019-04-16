@@ -1,0 +1,32 @@
+/* 图片选择 */
+.picker-check {
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    display: none;
+    outline: 1px solid #aeaeae;
+}
+
+.picker {
+    width: 160px;
+    height: 100px;
+}
+
+.picker img {
+    width: 160px;
+    height: 100px;
+    object-fit: cover;
+    display: inline-block;
+
+    outline: 1px solid #aeaeae;
+    /* 延时 */
+    -webkit-transition: all 60ms linear;
+    -moz-transition: all 60ms linear;
+    -o-transition: all 60ms linear;
+    transition: all 60ms linear;
+}
+
+/* 选中checkbox时 */
+.picker-check:checked + img {
+    outline: 5px solid #2aabd2;
+}

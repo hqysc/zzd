@@ -1,0 +1,27 @@
+.page {
+    width: auto;
+    height: 30px;
+    margin: 20px auto;
+}
+
+.page ul {
+    width: auto;
+    height: 30px;
+    margin: 0 auto;
+    font-size: 0;
+    text-align: center;
+}
+
+.page ul li {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    color: #fff;
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 2px;
+    background-color: #5f5f5f;
+}
