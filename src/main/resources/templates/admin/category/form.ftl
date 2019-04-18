@@ -44,7 +44,7 @@
                                 <label class="col-sm-3 control-label">类目名称：</label>
                                 <div class="col-sm-7">
                                     <input id="id" name="id" class="form-control" type="hidden" value="${category.id}">
-                                    <input id="catename" name="catename" class="form-control" type="text" value="${category.catename}">
+                                    <input id="catename" name="catename" class="form-control" type="text" autocomplete="off" value="${category.catename}">
                                 </div>
                             </div>
 

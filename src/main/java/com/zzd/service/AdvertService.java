@@ -18,9 +18,13 @@ public interface AdvertService {
 
     Page<Advert> findAll(Pageable pageable);
 
+    Advert findProductAdvert();
+
     void saveOrUpdate(Advert advert);
 
     void grantGallery(int id, int galleryId);
 
     void delete(int id);
+
+    void setAdvertType(int id, int advertType);
 }

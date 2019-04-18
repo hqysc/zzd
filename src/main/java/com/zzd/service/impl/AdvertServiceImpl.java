@@ -50,15 +50,28 @@ public class AdvertServiceImpl implements AdvertService {
         return advertList;
     }
 
+    /**
+     * 查询杂志广告
+     * @return
+     */
+    @Override
+    public Advert findProductAdvert() {
+        Advert advert = advertDao.findAdvertById(1);
+        getGallery(advert);
+        return advert;
+    }
+
     @Override
     public void saveOrUpdate(Advert advert) {
         if(advert.getId() != null) {
             Advert dbAdvert = advertDao.findAdvertById(advert.getId());
             dbAdvert.setSortId(advert.getSortId());
             dbAdvert.setAdvertUrl(advert.getAdvertUrl());
+            dbAdvert.setAdvertBgColor(advert.getAdvertBgColor());
             dbAdvert.setUpdateTime(new Date());
             advertDao.saveAndFlush(dbAdvert);
         }else {
+            advert.setAdvertType(0);
             advert.setCreateTime(new Date());
             advert.setUpdateTime(new Date());
             advertDao.save(advert);
@@ -80,6 +93,25 @@ public class AdvertServiceImpl implements AdvertService {
     @Override
     public void delete(int id) {
         advertDao.deleteById(id);
+    }
+
+    /**
+     * 设置广告类型
+     * @param id
+     * @param advertType
+     */
+    @Override
+    public void setAdvertType(int id, int advertType) {
+        Advert advert = advertDao.findById(id);
+        if(advertType == 1) {   // 只允许有一个广告为杂志广告
+            List<Advert> advertList = advertDao.findAll();
+            for(Advert adverts : advertList) {
+                adverts.setAdvertType(0);
+                advertDao.saveAndFlush(adverts);
+            }
+        }
+        advert.setAdvertType(advertType);
+        advertDao.saveAndFlush(advert);
     }
 
     /** 获得图片 */

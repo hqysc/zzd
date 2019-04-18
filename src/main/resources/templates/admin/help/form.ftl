@@ -33,14 +33,14 @@
                                 <label class="col-sm-3 control-label">类目名称：</label>
                                 <div class="col-sm-7">
                                     <input id="id" name="id" class="form-control" type="hidden" value="${userHelp.id}">
-                                    <input id="helpTitle" name="helpTitle" class="form-control" type="text" value="${userHelp.helpTitle}">
+                                    <input id="helpTitle" name="helpTitle" class="form-control" type="text" autocomplete="off" value="${userHelp.helpTitle}">
                                 </div>
                             </div>
                             <!-- 序号 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">序号：</label>
                                 <div class="col-sm-7">
-                                    <input id="sortId" name="sortId" class="form-control" type="text" value="${userHelp.sortId}">
+                                    <input id="sortId" name="sortId" class="form-control" type="text" autocomplete="off" value="${userHelp.sortId}">
                                 </div>
                             </div>
                             <!-- 提交 -->

@@ -49,6 +49,10 @@
                         </div>
                     </div>
                     <div class="ibox-content">
+                        <p>
+                            <button class="btn btn-warning" type="button" onclick="changeList('hotList');"><i class="fa fa-reorder"></i>&nbsp;推荐</button>
+                            <button class="btn btn-info" type="button" onclick="changeList('freeList');"><i class="fa fa-reorder"></i>&nbsp;免费</button>
+                        </p>
                         <div id="categoryTree" class="test"></div>
                     </div>
                 </div>
@@ -69,10 +73,14 @@
                             <button class="btn btn-danger" type="button" onclick="setStatus(0);"><i class="fa fa-remove"></i>&nbsp;下架</button>
                         </p>
                         <p>
-                            <button class="btn btn-warning" type="button" onclick="setIshot(1);"><i class="fa fa-plus"></i>&nbsp;热卖</button>
-                            <button class="btn btn-danger" type="button" onclick="setIshot(0);"><i class="fa fa-remove"></i>&nbsp;取消热卖</button>
+                            <button class="btn btn-warning" type="button" onclick="setIshot(1);"><i class="fa fa-plus"></i>&nbsp;推荐</button>
+                            <button class="btn btn-danger" type="button" onclick="setIshot(0);"><i class="fa fa-remove"></i>&nbsp;取消推荐</button>
                             <button class="btn btn-info" type="button" onclick="setIsFree(1);"><i class="fa fa-plus"></i>&nbsp;免费</button>
                             <button class="btn btn-danger" type="button" onclick="setIsFree(0);"><i class="fa fa-remove"></i>&nbsp;取消免费</button>
+                        </p>
+                        <p>
+                            <button class="btn btn-warning" type="button" onclick="setTagStatus(1);"><i class="fa fa-plus"></i>&nbsp;New</button>
+                            <button class="btn btn-danger" type="button" onclick="setTagStatus(0);"><i class="fa fa-remove"></i>&nbsp;取消New</button>
                         </p>
                         <hr>
                         <!-- 表格开始 -->
@@ -274,6 +282,16 @@
                         return '<span class="label label-primary">出售</span>';
                     }
                 },{
+                    title: "New",
+                    field: "tagStatus",
+                    width: "80px",
+                    align: "center",
+                    formatter: function(value, row, index) {
+                        if (value == '1')
+                            return '<span class="label label-danger">New</span>';
+                        return '<span class="label label-default">正常</span>';
+                    }
+                },{
                     title: "创建时间",
                     field: "createTime",
                 },{
@@ -312,14 +330,14 @@
         /*
             获取分类json数据
          */
-        function getCategoryTree(){
+        function getCategoryTree() {
             $.ajax({                           //异步请求
                 url: "/admin/product/categoryList",
                 type: 'get',
                 dataType: "json",
                 async: false,
                 data:{},
-                success:function(data){
+                success:function(data) {
                     var cateList = new Array();
                     $.each(data, function(index, value) {   // cate 1
                         var cateNode = {};
@@ -340,21 +358,32 @@
                         showTags: true,
                         data: cateList,
                         onNodeSelected: function (event, node) {
-                            changeUrl(node.id);
+                            changeCateList(node.id);    // 改变url
                         }
                     });
                 },
                 error:function(){
 
                 }
-
             });
         }
 
-        // change list
-        function changeUrl(cateId) {
-            // console.log(url);
+        // change category list
+        function changeCateList(cateId) {
             var url = "/admin/product/list?cateId=" + cateId;
+            changeUrl(url);
+        }
+
+        /*
+            杂志列表选择
+         */
+        function changeList(listName) {
+            var url = "/admin/product/" + listName;
+            changeUrl(url);
+        }
+
+        // change bootstrap table url
+        function changeUrl(url) {
             $("#table_list").bootstrapTable('refresh', {url: url});
         }
 
@@ -496,6 +525,39 @@
                             type: "POST",
                             dataType: "json",
                             url: "${ctx!}/admin/product/setIsFree/" + item.id + "/" + isFree,
+                            success: function(msg){
+                                layer.msg(msg.message, {time: 1500},function(){
+                                    $('#table_list').bootstrapTable("refresh");
+                                    layer.close(index);
+                                });
+                            }
+                        });
+                    });
+                });
+            }
+        }
+
+        /*
+            设置杂志标签
+            0不是 1是
+        */
+        function setTagStatus(tagStatus) {
+            var items = $("#table_list").bootstrapTable('getSelections');
+            var msg = "";
+            if(items.length <= 0) {
+                layer.msg('请先选中一项', {time: 1000});
+            }else {
+                if(tagStatus == 1){
+                    msg = "确定设置New吗?";
+                }else {
+                    msg = "确定取消New吗?"
+                }
+                layer.confirm(msg, {icon: 1, title:'提示'}, function(index){
+                    $(items).each(function (index, item) {
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: "${ctx!}/admin/product/setTagStatus/" + item.id + "/" + tagStatus,
                             success: function(msg){
                                 layer.msg(msg.message, {time: 1500},function(){
                                     $('#table_list').bootstrapTable("refresh");

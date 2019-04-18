@@ -40,11 +40,11 @@ body {
 }
 
 .main .cart .user .switch .container #cart-list {
-    background-color: #B2B2B2;
+    background-color: #FF7F00;
 }
 
 .main .cart .user .switch .container #order-list {
-    background-color: #FF7F00;
+    background-color: #B2B2B2;
 }
 
 .main .cart .user .info {

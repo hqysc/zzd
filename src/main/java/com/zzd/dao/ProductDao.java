@@ -136,6 +136,22 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
     List<Product> findByIsHot(int isHot, Pageable pageable);
 
     /**
+     * 查询热门杂志 分页
+     * @param isHot
+     * @param pageable
+     * @return
+     */
+    Page<Product> findProductByIsHot(int isHot, Pageable pageable);
+
+    /**
+     * 查询免费杂志 分页
+     * @param isFree
+     * @param pageable
+     * @return
+     */
+    Page<Product> findProductByIsFree(int isFree, Pageable pageable);
+
+    /**
      * 查询免费杂志 随机
      * @param isFree
      * @return

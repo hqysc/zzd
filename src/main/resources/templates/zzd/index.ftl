@@ -128,7 +128,6 @@
                                 "</div>"
                         );
                         hotListDiv.append(itemDiv);
-
                     });
                 }
             });

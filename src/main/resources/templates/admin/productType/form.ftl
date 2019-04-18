@@ -33,14 +33,14 @@
                                 <label class="col-sm-3 control-label">类型名称：</label>
                                 <div class="col-sm-7">
                                     <input id="id" name="id" class="form-control" type="hidden" value="${productType.id}">
-                                    <input id="typeName" name="typeName" class="form-control" type="text" value="${productType.typeName}">
+                                    <input id="typeName" name="typeName" class="form-control" type="text" autocomplete="off" value="${productType.typeName}">
                                 </div>
                             </div>
                             <!-- 标签颜色 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">标签颜色：</label>
                                 <div class="col-sm-7">
-                                    <input id="tagColor" name="tagColor" class="form-control" type="text" value="${productType.tagColor}">
+                                    <input id="tagColor" name="tagColor" class="form-control" type="text" autocomplete="off" value="${productType.tagColor}">
                                 </div>
                             </div>
                             <!-- 提交 -->

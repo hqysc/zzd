@@ -29,21 +29,18 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
-
     @Autowired
     private ProductCategoryService productCategoryService;
-
     @Autowired
     private ProductTypeService productTypeService;
-
     @Autowired
     private YearsService yearsService;
-
     @Autowired
     private CountryService countryService;
-
     @Autowired
     private GalleryService galleryService;
+    @Autowired
+    private AdvertService advertService;
 
     /**
      * 首页热门杂志
@@ -106,8 +103,10 @@ public class ProductController {
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public String detail(@PathVariable int id, ModelMap map) {
         Product product = productService.findById(id);
+        Advert advert = advertService.findProductAdvert();
         List<Product> productList = productService.findRandByCategoryId(product.getCategoryId());
         map.put("product", product);
+        map.put("advert", advert);
         map.put("productList", productList);
         return "zzd/product/detail";
     }

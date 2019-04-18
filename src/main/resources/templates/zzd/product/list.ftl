@@ -98,7 +98,6 @@
                 <!-- list item -->
                 <div class="item">
                     <div class="item-inner">
-
                         <div class="item-img">
                             <a href="/product/detail/${product.id}">
                                 <img src="${product.gallery.thumbImageSrc}" alt="${product.gallery.imageName}">

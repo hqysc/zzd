@@ -28,6 +28,20 @@ public interface ProductService {
     List<Product> findByUpdate();
 
     /**
+     * 查询推荐杂志 分页
+     * @param pageable
+     * @return
+     */
+    Page<Product> findByIsHot(int isHot, Pageable pageable);
+
+    /**
+     * 查询免费杂志 分页
+     * @param pageable
+     * @return
+     */
+    Page<Product> findByIsFree(int isFree, Pageable pageable);
+
+    /**
      * 热门查询
      * @return
      */
@@ -147,6 +161,11 @@ public interface ProductService {
      * 设置免费
      */
     void setIsFree(int productId, int isFree);
+
+    /**
+     * 设置标签状态
+     */
+    void setTagStatus(int productId, int tagStatus);
 
     /**
      * 添加图片

@@ -29,9 +29,17 @@ public class Advert {
     @Column
     private Integer sortId;
 
+    /** 广告类型 0首页广告 1杂志广告 */
+    @Column
+    private Integer advertType;
+
     /** 广告链接 */
     @Column
     private String advertUrl;
+
+    /** 广告背景颜色 */
+    @Column
+    private String advertBgColor;
 
     /** 创建时间 */
     @Column

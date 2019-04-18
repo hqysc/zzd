@@ -33,14 +33,21 @@
                                 <label class="col-sm-3 control-label">序号：</label>
                                 <div class="col-sm-7">
                                     <input id="id" name="id" class="form-control" type="hidden" value="${advert.id}">
-                                    <input id="sortId" name="sortId" class="form-control" type="text" value="${advert.sortId}">
+                                    <input id="sortId" name="sortId" class="form-control" type="text" autocomplete="off" value="${advert.sortId}">
                                 </div>
                             </div>
                             <!-- 序号 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">链接：</label>
                                 <div class="col-sm-7">
-                                    <input id="advertUrl" name="advertUrl" class="form-control" type="text" value="${advert.advertUrl}">
+                                    <input id="advertUrl" name="advertUrl" class="form-control" type="text" autocomplete="off" value="${advert.advertUrl}">
+                                </div>
+                            </div>
+                            <!-- 背景 -->
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">背景颜色：</label>
+                                <div class="col-sm-7">
+                                    <input id="advertBgColor" name="advertBgColor" class="form-control" type="text" autocomplete="off" value="${advert.advertBgColor}">
                                 </div>
                             </div>
                             <!-- 提交 -->

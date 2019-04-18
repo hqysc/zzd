@@ -47,35 +47,35 @@
                                 <div class="col-sm-7">
                                 <#-- 隐藏ID -->
                                     <input id="id" name="id" class="form-control" type="hidden" value="${product.id}">
-                                    <input id="productName" name="productName" class="form-control" type="text" value="${product.productName}">
+                                    <input id="productName" name="productName" class="form-control" type="text" autocomplete="off" value="${product.productName}">
                                 </div>
                             </div>
                             <!-- 价格 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">价格：</label>
                                 <div class="col-sm-3">
-                                    <input id="price" name="price" class="form-control" type="text" value="${product.price}">
+                                    <input id="price" name="price" class="form-control" type="text" autocomplete="off" value="${product.price}">
                                 </div>
                             </div>
                             <!-- 杂志内含本数 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">本数：</label>
                                 <div class="col-sm-3">
-                                    <input id="num" name="num" class="form-control" type="text" value="${product.num}">
+                                    <input id="num" name="num" class="form-control" type="text" autocomplete="off" value="${product.num}">
                                 </div>
                             </div>
                             <!-- 杂志文件大小 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">文件大小（MB）：</label>
                                 <div class="col-sm-3">
-                                    <input id="fileSize" name="fileSize" class="form-control" type="text" value="${product.fileSize}">
+                                    <input id="fileSize" name="fileSize" class="form-control" type="text" autocomplete="off" value="${product.fileSize}">
                                 </div>
                             </div>
                             <!-- 百度云链接 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">百度云链接：</label>
                                 <div class="col-sm-7">
-                                    <input id="baiduyunUrl" name="baiduyunUrl" class="form-control" type="text" value="${product.baiduyunUrl}">
+                                    <input id="baiduyunUrl" name="baiduyunUrl" class="form-control" type="text" autocomplete="off" value="${product.baiduyunUrl}">
                                 </div>
                             </div>
 

@@ -68,6 +68,13 @@ public class Product implements Serializable {
     /** 是否免费 */
     private Integer isFree;
 
+    /**
+     * 杂志标签
+     * 0 default 1 new
+     */
+    @Column
+    private Integer tagStatus;
+
     /** 详情描述Id */
     @Column
     private Integer describeId;

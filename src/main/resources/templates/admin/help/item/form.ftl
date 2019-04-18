@@ -39,14 +39,14 @@
                                 <label class="col-sm-3 control-label">内容名称：</label>
                                 <div class="col-sm-7">
                                     <input id="id" name="id" class="form-control" type="hidden" value="${helpItem.id}">
-                                    <input id="itemName" name="itemName" class="form-control" type="text" value="${helpItem.itemName}">
+                                    <input id="itemName" name="itemName" class="form-control" type="text" autocomplete="off" value="${helpItem.itemName}">
                                 </div>
                             </div>
                             <!-- 序号 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">序号：</label>
                                 <div class="col-sm-7">
-                                    <input id="sortId" name="sortId" class="form-control" type="text" value="${helpItem.sortId}">
+                                    <input id="sortId" name="sortId" class="form-control" type="text" autocomplete="off" value="${helpItem.sortId}">
                                 </div>
                             </div>
 

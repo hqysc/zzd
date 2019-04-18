@@ -169,12 +169,18 @@ body {
     color: #7F7F7F;
 }
 
-.detail .right .bottom {
+.detail .right .advert {
     width: 360px;
     height: 140px;
     margin: 10px 0 0;
     background: #37ADDB;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
+}
+
+.detail .right .advert img {
+    width: 360px;
+    height: 140px;
+    object-fit: cover;
 }
 
 /* ------------------------------ right ------------------------------ */

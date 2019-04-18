@@ -48,7 +48,7 @@
                                 <label class="col-sm-3 control-label">充值数额：</label>
                                 <div class="col-sm-7">
                                     <input id="id" name="id" class="form-control" type="hidden" value="${user.id}">
-                                    <input id="addCoin" name="addCoin" class="form-control" type="text">
+                                    <input id="addCoin" name="addCoin" class="form-control" autocomplete="off" type="text">
                                 </div>
                             </div>
 

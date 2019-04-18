@@ -71,7 +71,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="bottom"></div>
+                <!-- 杂志广告 -->
+                <div class="advert">
+                    <a href="${advert.advertUrl}">
+                        <img src="${advert.gallery.imageSrc}" alt="">
+                    </a>
+                </div>
             </div>
         </div>
         <!-- 描述 -->

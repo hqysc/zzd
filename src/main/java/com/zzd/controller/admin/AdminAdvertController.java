@@ -90,6 +90,23 @@ public class AdminAdvertController extends BaseController {
     }
 
     /**
+     * 设置杂志类型
+     * @param id
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "/setType/{id}/{advertType}", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult setAdvertType(@PathVariable int id, @PathVariable int advertType, ModelMap map) {
+        try {
+            advertService.setAdvertType(id, advertType);
+        }catch (Exception e) {
+            return JsonResult.failure(e.getMessage());
+        }
+        return JsonResult.success();
+    }
+
+    /**
      * 列表
      * @return
      */

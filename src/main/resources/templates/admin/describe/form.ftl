@@ -36,7 +36,7 @@
                                 <label class="col-sm-3 control-label">描述名称：</label>
                                 <div class="col-sm-7">
                                     <input id="id" name="id" class="form-control" type="hidden" value="${describe.id}">
-                                    <input id="describeName" name="describeName" class="form-control" type="text" value="${describe.describeName}">
+                                    <input id="describeName" name="describeName" class="form-control" type="text" autocomplete="off" value="${describe.describeName}">
                                 </div>
                             </div>
 

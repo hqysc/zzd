@@ -33,14 +33,14 @@
                                 <label class="col-sm-3 control-label">年份名称：</label>
                                 <div class="col-sm-7">
                                     <input id="id" name="id" class="form-control" type="hidden" value="${years.id}">
-                                    <input id="yearsName" name="yearsName" class="form-control" type="text" value="${years.yearsName}">
+                                    <input id="yearsName" name="yearsName" class="form-control" type="text" autocomplete="off" value="${years.yearsName}">
                                 </div>
                             </div>
                             <!-- 标签颜色 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">标签颜色：</label>
                                 <div class="col-sm-7">
-                                    <input id="tagColor" name="tagColor" class="form-control" type="text" value="${years.tagColor}">
+                                    <input id="tagColor" name="tagColor" class="form-control" type="text" autocomplete="off" value="${years.tagColor}">
                                 </div>
                             </div>
                             <!-- 提交 -->

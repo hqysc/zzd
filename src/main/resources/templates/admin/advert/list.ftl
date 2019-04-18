@@ -40,6 +40,10 @@
                             <button class="btn btn-success " type="button" onclick="add();"><i class="fa fa-plus"></i>&nbsp;添加</button>
                             <button class="btn btn-danger" type="button" onclick="dels();"><i class="fa fa-remove"></i>&nbsp;删除</button>
                         </p>
+                        <p>
+                            <button class="btn btn-info" type="button" onclick="setAdvertType(0);"><i class="fa fa-plus"></i>&nbsp;首页广告</button>
+                            <button class="btn btn-warning" type="button" onclick="setAdvertType(1);"><i class="fa fa-plus"></i>&nbsp;杂志广告</button>
+                        </p>
                         <hr>
                         <!-- 表格开始 -->
                         <div class="row row-lg">
@@ -133,6 +137,14 @@
                     title: "序号",
                     field: "sortId",
                     sortable: true,
+                },{
+                    title: "序号",
+                    field: "advertType",
+                    formatter: function(value, row, index) {
+                        if (value == '0')
+                            return '<span class="label label-primary">首页广告</span>';
+                        return '<span class="label label-warning">杂志广告</span>';
+                    }
                 },{
                     title: "图片",
                     field: "gallery",
@@ -247,6 +259,39 @@
                             type: "POST",
                             dataType: "json",
                             url: "${ctx!}/admin/advert/delete/" + item.id,
+                            success: function(msg){
+                                layer.msg(msg.message, {time: 1500},function(){
+                                    $('#table_list').bootstrapTable("refresh");
+                                    layer.close(index);
+                                });
+                            }
+                        });
+                    });
+                });
+            }
+        }
+
+        /*
+            设置广告类型
+            0首页广告 1杂志广告
+        */
+        function setAdvertType(advertType) {
+            var items = $("#table_list").bootstrapTable('getSelections');
+            var msg = "";
+            if(items.length <= 0) {
+                layer.msg('请先选中一项', {time: 1000});
+            }else {
+                if(advertType == 1){
+                    msg = "确定设置为杂志广告吗?";
+                }else {
+                    msg = "确定设置为首页广告吗?"
+                }
+                layer.confirm(msg, {icon: 1, title:'提示'}, function(index){
+                    $(items).each(function (index, item) {
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: "${ctx!}/admin/advert/setType/" + item.id + "/" + advertType,
                             success: function(msg){
                                 layer.msg(msg.message, {time: 1500},function(){
                                     $('#table_list').bootstrapTable("refresh");

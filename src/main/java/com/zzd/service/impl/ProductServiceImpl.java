@@ -71,6 +71,38 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
+     * 查询热门杂志 分页
+     * @param isHot
+     * @param pageable
+     * @return
+     */
+    @Override
+    public Page<Product> findByIsHot(int isHot, Pageable pageable) {
+        Page<Product> productList = productDao.findProductByIsHot(isHot, pageable);
+        for(Product product : productList) {
+            getCoverImage(product, 1);
+            getInfo(product);
+        }
+        return productList;
+    }
+
+    /**
+     * 查询免费杂志 分页
+     * @param isFree
+     * @param pageable
+     * @return
+     */
+    @Override
+    public Page<Product> findByIsFree(int isFree, Pageable pageable) {
+        Page<Product> productList = productDao.findProductByIsFree(isFree, pageable);
+        for(Product product : productList) {
+            getCoverImage(product, 1);
+            getInfo(product);
+        }
+        return productList;
+    }
+
+    /**
      * 首页热门查找
      * @return
      */
@@ -291,6 +323,7 @@ public class ProductServiceImpl implements ProductService {
         }else {
             product.setCreateTime(new Date());
             product.setUpdateTime(new Date());
+            product.setTagStatus(0);
             product.setIsHot(0);
             product.setIsFree(0);
             product.setProductStatus(1);
@@ -335,6 +368,18 @@ public class ProductServiceImpl implements ProductService {
     public void setIsFree(int productId, int isFree) {
         Product product = productDao.findProductById(productId);
         product.setIsFree(isFree);
+        productDao.saveAndFlush(product);
+    }
+
+    /**
+     * 设置标签状态
+     * @param productId
+     * @param tagStatus
+     */
+    @Override
+    public void setTagStatus(int productId, int tagStatus) {
+        Product product = productDao.findProductById(productId);
+        product.setTagStatus(tagStatus);
         productDao.saveAndFlush(product);
     }
 

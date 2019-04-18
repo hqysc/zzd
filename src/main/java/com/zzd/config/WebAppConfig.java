@@ -63,6 +63,6 @@ public class WebAppConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptors).addPathPatterns("/admin/**").excludePathPatterns("/admin/login");
+//        registry.addInterceptor(loginInterceptors).addPathPatterns("/admin/**").excludePathPatterns("/admin/login");
     }
 }

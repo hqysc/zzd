@@ -190,6 +190,23 @@ public class AdminProductController extends BaseController {
     }
 
     /**
+     * 设置杂志标签
+     * @param id
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "/setTagStatus/{id}/{tagStatus}", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult setTagStatus(@PathVariable int id, @PathVariable int tagStatus, ModelMap map) {
+        try {
+            productService.setTagStatus(id, tagStatus);
+        }catch (Exception e) {
+            return JsonResult.failure(e.getMessage());
+        }
+        return JsonResult.success();
+    }
+
+    /**
      * 图片选择页面
      * @param searchText
      * @param map
@@ -257,6 +274,31 @@ public class AdminProductController extends BaseController {
                 list = productService.findAll(pageable).getContent();
             }
         }
+        return new ResultBean<>(list, total, pageable.getPageSize(), pageable.getPageNumber());
+    }
+
+    /**
+     * 查询推荐分类
+     * @return
+     */
+    @RequestMapping("/hotList")
+    @ResponseBody
+    public ResultBean<List<Product>> findByIsHot() {
+        Pageable pageable = getPageableAndSort(Sort.by(Sort.Direction.DESC, "updateTime"));   // 排序
+        int total = (int) productService.findByIsHot(1, pageable).getTotalElements();
+        List<Product> list = productService.findByIsHot(1, pageable).getContent();
+        return new ResultBean<>(list, total, pageable.getPageSize(), pageable.getPageNumber());
+    }
+    /**
+     * 查询免费分类
+     * @return
+     */
+    @RequestMapping("/freeList")
+    @ResponseBody
+    public ResultBean<List<Product>> findByIsFree() {
+        Pageable pageable = getPageableAndSort(Sort.by(Sort.Direction.DESC, "updateTime"));   // 排序
+        int total = (int) productService.findByIsFree(1, pageable).getTotalElements();
+        List<Product> list = productService.findByIsFree(1, pageable).getContent();
         return new ResultBean<>(list, total, pageable.getPageSize(), pageable.getPageNumber());
     }
 

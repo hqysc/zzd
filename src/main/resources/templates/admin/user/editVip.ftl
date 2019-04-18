@@ -48,7 +48,7 @@
                                 <label class="col-sm-3 control-label">用户会员等级：</label>
                                 <div class="col-sm-7">
                                     <input id="id" name="id" class="form-control" type="hidden" value="${user.id}">
-                                    <input id="vipStatus" name="vipStatus" class="form-control" type="text" value="${user.vipStatus}">
+                                    <input id="vipStatus" name="vipStatus" class="form-control" type="text" autocomplete="off" value="${user.vipStatus}">
                                 </div>
                             </div>
 
