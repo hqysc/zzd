@@ -18,8 +18,8 @@
                     <a href="/index"><li class="logo"></li></a>
                     <a href="/"><li>首页</li></a>
                     <a href="/product/list"><li>查找杂志</li></a>
-                    <a href="/help/index"><li>帮助中心</li></a>
-                    <a href=""><li>VIP通道</li></a>
+                    <a href="javascript:void(0);" onclick="checkLoginToUrl('/help/index');"><li>帮助中心</li></a>
+                    <a href="javascript:void(0);" onclick="checkLoginToUrl('/rechargeHelp/index');"><li>VIP通道</li></a>
                 </ul>
             </div>
 
@@ -54,6 +54,25 @@
     <script src="${ctx!}/hAdmin/js/plugins/layer/layer.min.js"></script>
 
     <script src="${ctx!}/hAdmin/js/content.js?v=1.0.0"></script>
+
+    <script>
+        /*
+            直接支付
+        */
+        function checkLoginToUrl(url) {
+            $.get("${ctx!}/user/checkLogin", function (msg) {   // 先判断是否登录
+                if(msg.code == 0) { // 已登录
+                    window.location.href="${ctx!}" + url;
+                }else if(msg.code == -1) {  // 未登录
+                    layer.confirm("请先登录", {
+                        btn : [ '登录', '取消' ]//按钮
+                    }, function(index) {
+                        window.location.href="${ctx!}/user/login";
+                    });
+                }
+            });
+        }
+    </script>
 
 </body>
 

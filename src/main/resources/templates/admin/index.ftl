@@ -153,6 +153,21 @@
                     </li>
                     <!-- cut-off line -->
                     <li class="line dk"></li>
+                    <!-- 充值中心管理 -->
+                    <li>
+                        <a href="#">
+                            <i class="fa fa fa-user"></i>
+                            <span class="nav-label">充值中心管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="${ctx!}/admin/rechargeHelp/index">充值中心管理</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- cut-off line -->
+                    <li class="line dk"></li>
                 </ul>
             </div>
         </nav>

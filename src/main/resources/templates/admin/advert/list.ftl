@@ -138,7 +138,7 @@
                     field: "sortId",
                     sortable: true,
                 },{
-                    title: "序号",
+                    title: "广告类型",
                     field: "advertType",
                     formatter: function(value, row, index) {
                         if (value == '0')
