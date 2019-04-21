@@ -136,6 +136,14 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
     List<Product> findByIsHot(int isHot, Pageable pageable);
 
     /**
+     * 查找热门杂志 随机
+     * @param isHot
+     * @return
+     */
+    @Query(value = "SELECT * FROM product WHERE is_hot=? ORDER BY RAND() LIMIT 12", nativeQuery = true)
+    List<Product> findRandByIsHot(int isHot);
+
+    /**
      * 查询热门杂志 分页
      * @param isHot
      * @param pageable

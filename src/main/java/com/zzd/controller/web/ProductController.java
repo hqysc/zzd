@@ -43,14 +43,14 @@ public class ProductController {
     private AdvertService advertService;
 
     /**
-     * 首页热门杂志
+     * 首页热门杂志 随机
      * @param map
      * @return
      */
     @RequestMapping("hotList")
     @ResponseBody
     public List<Product> hotList(ModelMap map) {
-        List<Product> productList = productService.findProductByIsHot();
+        List<Product> productList = productService.findRandByIsHot();
         map.put("productList", productList);
         return productList;
     }

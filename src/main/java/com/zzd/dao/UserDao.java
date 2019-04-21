@@ -43,11 +43,27 @@ public interface UserDao extends JpaRepository<User, Integer> {
     List<User> findByUserName(String userName);
 
     /**
+     * 根据用户邮箱查询
+     * @param userEmail
+     * @return
+     */
+    List<User> findByUserEmail(String userEmail);
+
+    /**
      * 根据用户名和密码查询
      * @param username
      * @param password
      * @return
      */
     User findByUserNameAndAndUserPassword(String username, String password);
+
+    /**
+     * 根据用户名 邮箱 激活码查询用户
+     * @param userName
+     * @param userEmail
+     * @param code
+     * @return
+     */
+    User findByUserNameAndAndUserEmailAndCode(String userName, String userEmail, String code);
 
 }

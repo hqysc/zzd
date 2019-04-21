@@ -23,9 +23,11 @@ public class UserHelp {
     private Integer id;
 
     /** 标题 */
+    @Column
     private String helpTitle;
 
     /** 排序 */
+    @Column
     private Integer sortId;
 
     /** 创建时间 */

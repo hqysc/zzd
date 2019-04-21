@@ -26,7 +26,7 @@ public class IndexController {
      */
     @RequestMapping(value={"/","/index"})
     public String index(ModelMap map) {
-        List<Advert> advertList = advertService.findAll();
+        List<Advert> advertList = advertService.findIndexAdvert();
         map.put("advertList", advertList);
         return "zzd/index";
     }

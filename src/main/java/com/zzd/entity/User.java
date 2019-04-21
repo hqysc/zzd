@@ -2,10 +2,7 @@ package com.zzd.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -22,23 +19,38 @@ public class User {
     private Integer id;
 
     /** 用户名 */
+    @Column
     private String userName;
 
     /** 密码 */
+    @Column
     private String userPassword;
 
     /** 会员等级 */
+    @Column
     private Integer vipStatus;
 
     /** 书币 */
+    @Column
     private Double coin;
 
     /** 邮箱 */
-    private String email;
+    @Column
+    private String userEmail;
 
     /** 电话号码 */
+    @Column
     private String phoneNumber;
 
+    /** 激活状态 */
+    @Column
+    private Integer userStatus;
+
+    /** 激活码 */
+    @Column
+    private String code;
+
     /** 注册时间 */
+    @Column
     private Date registerTime;
 }

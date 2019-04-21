@@ -335,12 +335,27 @@ body {
     margin-top: 10px;
 }
 
+.main .cart .list .pay .pay-price {
+    min-width: 80px;
+    height: 40px;
+    float: right;
+    margin-right: 10px;
+    color: #7F7F7F;
+    text-align: left;
+    font-size: 12px;
+}
+
+.main .cart .list .pay .pay-price .price-total {
+    font-size: 18px;
+}
+
+
 .main .cart .list .pay .pay-btn{
-    width: 120px;
+    width: 140px;
     height: 40px;
     border: none;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     color: #fff;
     background-color: #FF0086;
     float: right;

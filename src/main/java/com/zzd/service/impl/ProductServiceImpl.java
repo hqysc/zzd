@@ -103,13 +103,27 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
-     * 首页热门查找
+     * 根据热门查找
      * @return
      */
     @Override
     public List<Product> findProductByIsHot() {
         Pageable pageable = PageRequest.of(0, 12, Sort.by(Sort.Direction.DESC, "updateTime"));
         List<Product> productList = productDao.findByIsHot(1, pageable);
+        for(Product product : productList) {
+            getCoverImage(product, 1);
+            getInfo(product);
+        }
+        return productList;
+    }
+
+    /**
+     * 首页热门查询 随机
+     * @return
+     */
+    @Override
+    public List<Product> findRandByIsHot() {
+        List<Product> productList = productDao.findRandByIsHot(1);
         for(Product product : productList) {
             getCoverImage(product, 1);
             getInfo(product);

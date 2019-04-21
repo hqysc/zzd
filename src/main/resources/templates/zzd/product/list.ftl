@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="${ctx!}/css/bottom.css">
 
     <link rel="stylesheet" href="${ctx!}/custom/css/check.css">
-    <link rel="stylesheet" href="${ctx!}/custom/css/page.css">
+    <link rel="stylesheet" href="${ctx!}/css/page.css">
 
 
     <#--<link href="${ctx!}/hAdmin/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">-->
@@ -22,7 +22,14 @@
     <!-- 导航 -->
     <#include "/zzd/common.ftl">
     <!-- 面包屑导航 -->
-    <#include "/zzd/bread-crumbs.ftl">
+    <div class="bread-crumbs">
+        <ul>
+            <li class="title">当前位置：</li>
+            <li><a href="/index">首页</a></li>
+            <li> > </li>
+            <li><a>杂志列表</a></li>
+        </ul>
+    </div>
 
     <div class="main rt">
         <!-- 导航 -->
@@ -109,7 +116,16 @@
                                     <div class="tag" style="background-color: ${product.years.tagColor}">${product.years.yearsName}</div>
                                     <div class="tag" style="background-color: ${product.type.tagColor}">${product.type.typeName}</div>
                                     <div class="tag" style="background-color: ${product.country.tagColor}">${product.country.countryName}</div>
-                                    <div class="tag" style="background-color: #FF7F00">New</div>
+                                    <#-- tag -->
+                                    <#if product.tagStatus == 1>
+                                        <div class="tag" style="background-color: #FF0086">New</div>
+                                    <#else>
+                                        <#if product.isFree == 1>
+                                            <div class="tag" style="background-color: #FF7F00">免费</div>
+                                        <#else>
+                                            <div class="tag" style="background-color: #FF7F00">VIP</div>
+                                        </#if>
+                                    </#if>
                                 </div>
                             </div>
                         </div>
@@ -134,10 +150,10 @@
         <div class="page">
             <ul>
                 <#if pageNum gt 1>
-                    <a href="javascript:toPage(${pageNum - 1});"><li><span>←</span></li></a>
+                    <a href="javascript:toPage(${pageNum - 1});"><li><span> < </span></li></a>
                 </#if>
                 <#if pageNum lt pageTotal>
-                    <a href="javascript:toPage(${pageNum + 1});"><li><span>→</span></li></a>
+                    <a href="javascript:toPage(${pageNum + 1});"><li><span> > </span></li></a>
                 </#if>
             </ul>
         </div>

@@ -80,9 +80,40 @@ public class UserServiceImpl implements UserService {
         return userDao.findByUserNameAndAndUserPassword(username, password);
     }
 
+    /**
+     * 根据用户名查询
+     * @param username
+     * @return
+     */
     @Override
     public List<User> checkUserName(String username) {
         return userDao.findByUserName(username);
+    }
+
+    /**
+     * 根据用户邮箱查询
+     * @param userEmail
+     * @return
+     */
+    @Override
+    public List<User> checkUserEmail(String userEmail) {
+        return userDao.findByUserEmail(userEmail);
+    }
+
+    /**
+     * 激活账号
+     * @param userName
+     * @param userEmail
+     * @param code
+     */
+    @Override
+    public void checkCode(String userName, String userEmail, String code) {
+        User user = userDao.findByUserNameAndAndUserEmailAndCode(userName, userEmail, code);
+        if(user != null) {
+            user.setUserStatus(1);
+            user.setCode("");
+            userDao.saveAndFlush(user);
+        }
     }
 
 }

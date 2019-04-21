@@ -101,6 +101,29 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
+     * 直接支付时检查书币余额
+     * @param request
+     * @param response
+     * @param productId
+     * @return
+     */
+    @Override
+    public int checkPayCoin(HttpServletRequest request, HttpServletResponse response, Integer productId) {
+        if(productId != null) {
+            User user = (User) request.getSession().getAttribute("user");
+            Product product = productDao.findProductById(productId);
+            if(user != null) {
+                if(user.getCoin() >= product.getPrice()) {
+                    return 1;   // 余额可支付
+                }else {
+                    return 0;   // 余额不足
+                }
+            }
+        }
+        return -1;
+    }
+
+    /**
      * 直接结算
      * @param request
      * @param response
@@ -108,7 +131,7 @@ public class OrderServiceImpl implements OrderService {
      * @return
      */
     @Override
-    public String payAndSave(HttpServletRequest request, HttpServletResponse response, Integer productId) {
+    public int payAndSave(HttpServletRequest request, HttpServletResponse response, Integer productId) {
         if(productId != null) {
             Product product = productDao.findProductById(productId);
             Double total = product.getPrice();
@@ -136,13 +159,13 @@ public class OrderServiceImpl implements OrderService {
                             cartDao.deleteById(cart.getId());
                         }
                     }
-                    return "支付成功";
+                    return 0;   // 支付成功
                 }else {
-                    return "书币不足";
+                    return 1;   // 余额不足
                 }
             }
         }
-        return "支付失败";
+        return -1;  // 支付失败
     }
 
     /**
@@ -184,14 +207,16 @@ public class OrderServiceImpl implements OrderService {
                         orderItemDao.save(orderItem);
                         cartDao.deleteById(cart.getId());   // delete cart
                     }
-                    return 1;
+                    return 0;   // 支付成功
                 }else {
-                    return 2;
+                    return 1;   // 余额不足
                 }
             }
 
+        }else {
+            return 2;   // 请至少勾选一项商品
         }
-        return 0;
+        return -1;  // 支付失败
     }
 
     /**

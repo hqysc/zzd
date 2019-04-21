@@ -9,40 +9,51 @@
     <link rel="stylesheet" href="${ctx!}/css/index.css">
     <link rel="stylesheet" href="${ctx!}/css/productList.css">
     <link rel="stylesheet" href="${ctx!}/css/base.css">
-    <link rel="stylesheet" href="${ctx!}/css/banner.css">
+    <link rel="stylesheet" href="${ctx!}/css/banner/banner.css">
 </head>
 <body>
     <!-- 导航 -->
     <#include "/zzd/common.ftl">
-
     <!-- 轮播图 -->
     <div class="banner">
-        <div class="middle_right">
-            <div id="lunbobox">
-                <div id="toleft"> < </div>
-                <div class="lunbo">
-                    <#list advertList as advert>
-                        <a href="${advert.advertUrl}"><img src="${advert.gallery.imageSrc}"></a>
-                    </#list>
-                </div>
-                <div id="toright"> > </div>
-            </div>
+        <div class="pb-carouselWarp advert-banner">
+            <ul class="pb-carousel">
+                <#list advertList as advert>
+                    <!-- 第一个要加 'pb-this' -->
+                    <#if advert_index == 0>
+                        <li class="pb-this" style="background-color: ${advert.advertBgColor}"><a href="${advert.advertUrl}"><img src="${advert.gallery.imageSrc}" alt=""/></a></li>
+                    <#else>
+                        <li style="background-color: ${advert.advertBgColor}"><a href="${advert.advertUrl}"><img src="${advert.gallery.imageSrc}" alt=""/></a></li>
+                    </#if>
+                </#list>
+            </ul>
+            <ul class="pb-carousel-ind">
+                <#list advertList as advert>
+                    <!-- 第一个要加 'pb-this' -->
+                    <#if advert_index == 0>
+                        <li class="pb-this"></li>
+                    <#else>
+                        <li></li>
+                    </#if>
+                </#list>
+            </ul>
+            <button class="pb-arrow pb-arrow-prev"></button>
+            <button class="pb-arrow pb-arrow-next" id="aa"></button>
         </div>
     </div>
 
     <!-- 内容 -->
     <!-- 标签导航 -->
     <div class="tab-nav">
-        <a href="javascript:void(0);" onclick="loadHot();">精选推荐</a>
-        <a href="javascript:void(0);" onclick="loadUpdate();">最新更新</a>
-        <a href="javascript:void(0);" onclick="loadFree();">限时免费</a>
+        <a href="javascript:void(0);" id="a-hot" onclick="loadHot();">精选推荐</a>
+        <a href="javascript:void(0);" id="a-new" onclick="loadUpdate();">最新更新</a>
+        <a href="javascript:void(0);" id="a-free" onclick="loadFree();">限时免费</a>
     </div>
 
     <!-- main 内容 -->
     <div class="main rt">
         <#-- 优选推荐 -->
         <div class="main-list" id="hotList"></div>
-
         <#-- 推荐 -->
         <div class="main-list" id="indexList"></div>
     </div>
@@ -56,29 +67,50 @@
     <script src="${ctx!}/hAdmin/js/plugins/layer/layer.min.js"></script>
 
     <script src="${ctx!}/hAdmin/js/content.js?v=1.0.0"></script>
-    <!-- banner -->
-    <script src="${ctx!}/custom/js/banner.js"></script>
+    <script src="${ctx!}/js/carousel.min.js" charset="utf-8"></script>
+    <!-- 轮播图 -->
 
     <script>
+        carousel(
+            $('.advert-banner'),	//必选， 要轮播模块(id/class/tagname均可)，必须为jQuery元素
+            {
+                type: 'fade',	//可选，默认左右(leftright) - 'leftright' / 'updown' / 'fade' (左右/上下/渐隐渐现)
+                arrowtype: 'move',	//可选，默认一直显示 - 'move' / 'none'	(鼠标移上显示 / 不显示 )
+                autoplay: true,	//可选，默认true - true / false (开启轮播/关闭轮播)
+                time:4000	//可选，默认3000
+            }
+        );
+
         $(document).ready(function() {
             loadHot();
             loadIndex();
-            loadFree();
         });
 
         function loadHot() {
+            changeColor("#a6a6a6", "#4C4C4C", "#4C4C4C");
             var url = '${ctx!}/product/hotList';
             loadList(url);
         }
 
         function loadUpdate() {
+            changeColor("#4C4C4C", "#a6a6a6", "#4C4C4C");
             var url = '${ctx!}/product/updateList';
             loadList(url);
         }
 
         function loadFree() {
+            changeColor("#4C4C4C", "#4C4C4C", "#a6a6a6");
             var url = '${ctx!}/product/freeList';
             loadList(url);
+        }
+
+        /*
+         改变颜色
+        */
+        function changeColor(hotColor, newColor, freeColor) {
+            $("#a-hot").css("color", hotColor);
+            $("#a-new").css("color", newColor);
+            $("#a-free").css("color", freeColor);
         }
 
         function loadList(url) {
@@ -106,18 +138,17 @@
                             );
                         }
 
-                        innerDiv.append(
-                                "<div class='item-tag'>" +
-                                    "<div class='tag-content'>" +
-                                        "<div class='tag-flex'>" +
-                                            "<div class='tag' style='background-color: " + data.years.tagColor + "'>" + data.years.yearsName + "</div>" +
-                                            "<div class='tag' style='background-color: " + data.type.tagColor + "'>" + data.type.typeName + "</div>" +
-                                            "<div class='tag' style='background-color: " + data.country.tagColor + "'>" + data.country.countryName + "</div>" +
-                                            "<div class='tag' style='background-color: #FF7F00'>New</div>" +
-                                        "</div>" +
-                                    "</div>" +
-                                "</div>" +
+                        if(data.tagStatus == 1) {
+                            loadTag(data, innerDiv, "#FF0086", "New");
+                        }else {
+                            if(data.isFree == 1) {
+                                loadTag(data, innerDiv, "#FF7F00", "免费");
+                            }else {
+                                loadTag(data, innerDiv, "#FF7F00", "VIP");
+                            }
+                        }
 
+                        innerDiv.append(
                                 "<div class='item-bar'>" +
                                     "<div class='bar-content'>" +
                                         "<div class='info'><a href='/product/detail/" + data.id + "'>" + data.productName + "</a></div>" +
@@ -147,7 +178,8 @@
                     indexListDiv.html("");
                     // all
                     $.each(data, function (index, data) {
-                        indexListDiv.append("<div class='list-title'><h2>" + data.catename + "</h2></div>");
+                        // title
+                        indexListDiv.append("<div class='list-title'><h2>" + data.catename + "</h2><p>" + data.catename + "</p></div>");
                         // cate
                         $.each(data, function (i, cate) {
                             if(i == "product") {
@@ -168,18 +200,17 @@
                                         );
                                     }
 
-                                    innerDiv.append(
-                                            "<div class='item-tag'>" +
-                                                "<div class='tag-content'>" +
-                                                    "<div class='tag-flex'>" +
-                                                        "<div class='tag' style='background-color: " + product.years.tagColor + "'>" + product.years.yearsName + "</div>" +
-                                                        "<div class='tag' style='background-color: " + product.type.tagColor + "'>" + product.type.typeName + "</div>" +
-                                                        "<div class='tag' style='background-color: " + product.country.tagColor + "'>" + product.country.countryName + "</div>" +
-                                                        "<div class='tag' style='background-color: #FF7F00'>New</div>" +
-                                                    "</div>" +
-                                                "</div>" +
-                                            "</div>" +
+                                    if(product.tagStatus == 1) {
+                                        loadTag(product, innerDiv, "#FF0086", "New");
+                                    }else {
+                                        if(product.isFree == 1) {
+                                            loadTag(product, innerDiv, "#FF7F00", "免费");
+                                        }else {
+                                            loadTag(product, innerDiv, "#FF7F00", "VIP");
+                                        }
+                                    }
 
+                                    innerDiv.append(
                                             "<div class='item-bar'>" +
                                                 "<div class='bar-content'>" +
                                                     "<div class='info'><a href='/product/detail/" + product.id + "'>" + product.productName + "</a></div>" +
@@ -197,6 +228,24 @@
                     });
                 }
             });
+        }
+
+        /*
+            加载标签
+        */
+        function loadTag(data, divName, bgColor, tagName) {
+            divName.append(
+                    "<div class='item-tag'>" +
+                        "<div class='tag-content'>" +
+                            "<div class='tag-flex'>" +
+                                "<div class='tag' style='background-color: " + data.years.tagColor + "'>" + data.years.yearsName + "</div>" +
+                                "<div class='tag' style='background-color: " + data.type.tagColor + "'>" + data.type.typeName + "</div>" +
+                                "<div class='tag' style='background-color: " + data.country.tagColor + "'>" + data.country.countryName + "</div>" +
+                                "<div class='tag' style='background-color: " + bgColor + "'>" + tagName + "</div>" +
+                            "</div>" +
+                        "</div>" +
+                    "</div>"
+            );
         }
 
         // 添加到我的书架

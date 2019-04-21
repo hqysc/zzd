@@ -17,7 +17,14 @@
     <!-- 导航 -->
     <#include "/zzd/common.ftl">
     <!-- 面包屑导航 -->
-    <#include "/zzd/bread-crumbs.ftl">
+    <div class="bread-crumbs">
+        <ul>
+            <li class="title">当前位置：</li>
+            <li><a href="/index">首页</a></li>
+            <li> > </li>
+            <li><a>我的书架</a></li>
+        </ul>
+    </div>
 
     <!-- main -->
     <div class="main">
@@ -99,6 +106,8 @@
                                 <!-- check box -->
                                 <div class="check">
                                     <input type="checkbox" class="checkPay" value="${cart.id}">
+                                    <!-- price -->
+                                    <input type="hidden" class="check-price" value="${cart.product.price}">
                                 </div>
                             </div>
                         </label>
@@ -106,10 +115,18 @@
                 </#list>
 
                 <div class="pay">
-                    <form id="frm" method="post" action="${ctx!}/order/pays">
+                    <!--
+                    <form id="frm" method="post" action="">
                         <div id="productIds"></div>
-                        <input type="submit" class="pay-btn" value="确认结算">
+                        <input type="button" onclick="pays();" class="pay-btn" value="确认结算">
                     </form>
+                    -->
+                    <input type="button" onclick="pays();" class="pay-btn" value="确认结算">
+
+                    <div class="pay-price">
+                        <p>结算书币：</p>
+                        <p id="price-total" class="price-total">0</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -126,31 +143,86 @@
     <script src="${ctx!}/hAdmin/js/content.js?v=1.0.0"></script>
     <script src="${ctx!}/hAdmin/js/plugins/layer/layer.min.js"></script>
 
+    <!-- jQuery Validation plugin javascript-->
+    <script src="${ctx!}/hAdmin/js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="${ctx!}/hAdmin/js/plugins/validate/messages_zh.min.js"></script>
+
     <script>
         $(document).ready(function(){
-
+            $(".pay-btn").css('background-color',"#7f7f7f");
         });
 
-        $('.check').change(function() {
+        function pays() {
+            var cartIds = getCartIds(); // 获取cartIds
+            if(cartIds != null) {
+                layer.confirm('是否支付', {
+                    btn : [ '支付', '取消' ]    // 按钮
+                }, function(index) {
+                    $.ajax({
+                        type: "POST",
+                        url: "${ctx!}/order/pays",
+                        dataType: "json",
+                        data: {"cartIds": cartIds},
+                        traditional: true,
+                        success: function(msg){
+                            console.log(msg.data);
+                            if(msg.data == 0) { // 支付成功
+                                layer.msg("支付成功", {time: 1000},function(){
+                                    window.location.href="${ctx!}/order/list";
+                                });
+                            }else if(msg.data == 1) {   // 书币不足 充值
+                                layer.confirm('书币不足，是否充值', {
+                                    btn : [ '充值', '取消' ]    // 按钮
+                                }, function(index) {
+                                    layer.msg("书币不足，请充值", {time: 1000});
+                                });
+                            }else { // 支付失败
+                                layer.msg("支付失败", {time: 1000});
+                            }
+                        }
+                    });
+                });
+            }else {
+                layer.msg("您未选择杂志", {time: 1000});
+            }
+        }
+
+
+        function getCartIds() {
             var productIds = new Array();
-            var frm = $("#productIds");
-            var ids = "";
-
-            frm.html("");
-
             $("input[class='checkPay']:checked").map(function() {
-                // 获取父节点的下一个子节点的文本
                 productIds.push($(this).val());
             });
 
-            for(var i = 0; i < productIds.length; i ++ ) {
-                // 传值
-                frm.append("<input name='cartIds' type='hidden' value='" + productIds[i] + "'>");
-                ids += productIds[i] + ",";
+            if(productIds != false) {
+                $(".pay-btn").css('background-color',"#FF0086");
+                return productIds;
+            }else {
+                $(".pay-btn").css('background-color',"#7f7f7f");
+                return null;
+            }
+        }
+
+
+        $('.check').change(function() {
+            var price_arr = new Array();
+            var total = 0;  // price total
+
+            $("input[class='checkPay']:checked").map(function() {
+                // 获取父节点的下一个子节点的文本
+                price_arr.push($(this).next().val());
+            });
+
+            for(var i = 0; i < price_arr.length; i ++ ) {
+                total += price_arr[i] * 1;
             }
 
-            console.log(ids);
+            $("#price-total").html(total);
+
+            getCartIds();
         });
+
+
 
         // 删除
         function del(id) {

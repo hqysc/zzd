@@ -8,6 +8,7 @@
     <!-- bootstrap -->
     <link rel="stylesheet" href="${ctx!}/css/base.css">
     <link rel="stylesheet" href="${ctx!}/css/nav.css">
+    <link rel="stylesheet" href="${ctx!}/css/bread-crumbs.css">
 </head>
 <body>
     <nav class="nav">
@@ -30,7 +31,7 @@
                         <a href="${ctx!}/cart/list"><li>${Session.user.userName}</li></a>
                         <a href="${ctx!}/cart/list"><li>我的书架</li></a>
                     <#else>
-                        <a href="/user/register"><li class="reg">注册</li></a>
+                        <a href="/user/register"><li>注册</li></a>
                         <a href="${ctx!}/user/login"><li>登录</li></a>
                     </#if>
                     <li>

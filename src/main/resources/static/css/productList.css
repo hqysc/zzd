@@ -19,7 +19,14 @@
 }
 
 .list-title h2 {
-    font-size: 30px;
+    font-size: 18px;
+    font-weight: normal;
+    color: #2e2a2b;
+}
+
+.list-title p {
+    font-size: 12px;
+    font-weight: normal;
     color: #2e2a2b;
 }
 

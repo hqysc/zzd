@@ -46,4 +46,18 @@ public interface UserService {
      */
     List<User> checkUserName(String username);
 
+    /**
+     * 检查用户邮箱是否重复
+     * @param userEmail
+     * @return
+     */
+    List<User> checkUserEmail(String userEmail);
+
+    /**
+     * 激活账号
+     * @param userName
+     * @param userEmail
+     * @param code
+     */
+    void checkCode(String userName, String userEmail, String code);
 }

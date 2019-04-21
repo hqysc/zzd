@@ -17,7 +17,14 @@
     <!-- 导航 -->
     <#include "/zzd/common.ftl">
     <!-- 面包屑导航 -->
-    <#include "/zzd/bread-crumbs.ftl">
+    <div class="bread-crumbs">
+        <ul>
+            <li class="title">当前位置：</li>
+            <li><a href="/index">首页</a></li>
+            <li> > </li>
+            <li><a>购买订单</a></li>
+        </ul>
+    </div>
 
     <!-- main -->
     <div class="main">
@@ -97,8 +104,12 @@
                                         </div>
                                         <!-- 时间 -->
                                         <div class="price">${orderItem.product.price}</div>
-                                        <!-- 时间 -->
-                                        <div class="bdyun-url">${orderItem.product.baiduyunUrl}</div>
+                                        <!-- 链接 -->
+                                        <div class="bdyun-url">
+                                            <div class="url-content">
+                                                ${orderItem.product.baiduyunUrl}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </label>

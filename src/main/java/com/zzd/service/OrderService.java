@@ -38,9 +38,15 @@ public interface OrderService {
     Page<Order> findByUserName(String userName, Pageable pageable);
 
     /**
+     * 直接支付时检查书币余额
+     * @return
+     */
+    int checkPayCoin(HttpServletRequest request, HttpServletResponse response, Integer productId);
+
+    /**
      * 提交到订单 直接支付下载
      */
-    String payAndSave(HttpServletRequest request, HttpServletResponse response, Integer productId);
+    int payAndSave(HttpServletRequest request, HttpServletResponse response, Integer productId);
 
     /**
      * 提交到订单 购物车里支付

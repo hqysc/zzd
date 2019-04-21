@@ -17,7 +17,14 @@
     <!-- 导航 -->
     <#include "/zzd/common.ftl">
     <!-- 面包屑导航 -->
-    <#include "/zzd/bread-crumbs.ftl">
+    <div class="bread-crumbs">
+        <ul>
+            <li class="title">当前位置：</li>
+            <li><a href="/index">首页</a></li>
+            <li> > </li>
+            <li><a>帮助中心</a></li>
+        </ul>
+    </div>
 
     <!-- 内容 -->
     <div class="main">

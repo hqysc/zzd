@@ -47,6 +47,27 @@ public class OrderController {
     }
 
     /**
+     * 直接支付时检查书币余额
+     * @return
+     */
+    @PostMapping("/checkPayCoin/{productId}")
+    @ResponseBody
+    public JsonResult checkPayCoin(@PathVariable int productId, HttpServletRequest request, HttpServletResponse response) {
+        User user = (User) request.getSession().getAttribute("user");
+        if(user != null) {
+            int status; // 输出信息
+            try {
+                status = orderService.checkPayCoin(request, response, productId);
+            } catch (Exception e) {
+                return JsonResult.failure(e.getMessage());
+            }
+            return JsonResult.success(status);
+        }else {
+            return JsonResult.failure("请先登录");
+        }
+    }
+
+    /**
      * 直接支付 保存订单
      * @param productId
      * @param request
@@ -58,13 +79,13 @@ public class OrderController {
     public JsonResult pay(@PathVariable int productId, HttpServletRequest request, HttpServletResponse response, ModelMap map) {
         User user = (User) request.getSession().getAttribute("user");
         if(user != null) {
-            String message; // 输出信息
+            int status; // 输出信息
             try {
-                message = orderService.payAndSave(request, response, productId);
+                status = orderService.payAndSave(request, response, productId);
             } catch (Exception e) {
                 return JsonResult.failure(e.getMessage());
             }
-            return JsonResult.success(message);
+            return JsonResult.success(status);
         }else {
             return JsonResult.failure("请先登录");
         }
@@ -78,14 +99,14 @@ public class OrderController {
      * @return
      */
     @RequestMapping(value = "/pays", method = RequestMethod.POST)
-    public String pays(int[] cartIds, HttpServletRequest request, HttpServletResponse response, ModelMap map) {
-        int order_status = orderService.payAndSaveInCart(request, response, cartIds);
-        if(order_status == 1) {
-            return "redirect:/order/list";
-        }else if(order_status == 2) {
-            return "redirect:/cart/list";
-        }else {
-            return "redirect:/cart/list";
+    @ResponseBody
+    public JsonResult pays(int[] cartIds, HttpServletRequest request, HttpServletResponse response, ModelMap map) {
+        int status; // 输出信息
+        try {
+            status = orderService.payAndSaveInCart(request, response, cartIds);
+        } catch (Exception e) {
+            return JsonResult.failure(e.getMessage());
         }
+        return JsonResult.success(status);
     }
 }

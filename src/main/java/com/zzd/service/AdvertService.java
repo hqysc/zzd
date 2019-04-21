@@ -18,6 +18,16 @@ public interface AdvertService {
 
     Page<Advert> findAll(Pageable pageable);
 
+    /**
+     * 查询首页广告
+     * @return
+     */
+    List<Advert> findIndexAdvert();
+
+    /**
+     * 查询杂志广告
+     * @return
+     */
     Advert findProductAdvert();
 
     void saveOrUpdate(Advert advert);

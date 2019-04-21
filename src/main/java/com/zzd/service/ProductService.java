@@ -48,6 +48,12 @@ public interface ProductService {
     List<Product> findProductByIsHot();
 
     /**
+     * 热门查询 随机
+     * @return
+     */
+    List<Product> findRandByIsHot();
+
+    /**
      * 查询免费杂志
      * @return
      */

@@ -28,17 +28,22 @@
             <form class="m-t" method="post" action="${ctx!}/user/register" id="frm">
                 <#-- username -->
                 <div class="form-group">
-                    <input type="text" name="username" class="form-control" placeholder="用户名">
+                    <input type="text" name="username" class="form-control" autocomplete="off" placeholder="用户名">
                 </div>
 
                 <#-- password -->
                 <div class="form-group">
-                    <input type="password" name="password" class="form-control" placeholder="密码">
+                    <input type="password" id="password" name="password" class="form-control" autocomplete="off" placeholder="密码">
+                </div>
+
+                <#-- password -->
+                <div class="form-group">
+                    <input type="password" id="rePassword" name="rePassword" class="form-control" autocomplete="off" placeholder="再次输入密码">
                 </div>
 
                 <#-- email -->
                 <div class="form-group">
-                    <input type="text" name="email" class="form-control" placeholder="邮箱">
+                    <input type="text" name="userEmail" class="form-control" autocomplete="off" placeholder="邮箱">
                 </div>
 
                 <#if message?exists >
@@ -77,7 +82,11 @@
                         minlength: 6,
                         maxlength: 12
                     },
-                    email: {
+                    rePassword: {
+                        required: true,
+                        equalTo: "#password"
+                    },
+                    userEmail: {
                         required: true,
                         email: true
                     }

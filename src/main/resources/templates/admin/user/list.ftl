@@ -144,14 +144,24 @@
                     title: "书币",
                     field: "coin",
                 },{
-                    title: "注册时间",
-                    field: "registerTime",
-                },{
                     title: "邮箱",
-                    field: "email",
+                    field: "userEmail",
                 },{
                     title: "电话",
                     field: "phoneNumber",
+                },{
+                    title: "状态",
+                    field: "userStatus",
+                    width: "80px",
+                    align: "center",
+                    formatter: function(value, row, index) {
+                        if (value == '1')
+                            return '<span class="label label-primary">已激活</span>';
+                        return '<span class="label label-default">未激活</span>';
+                    }
+                },{
+                    title: "注册时间",
+                    field: "registerTime",
                 },{
                     title: "操作",
                     field: "empty",

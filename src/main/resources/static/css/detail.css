@@ -1,5 +1,5 @@
 body {
-    background-color: #f5f4f4;
+    background-color: #E5E5E5;
 }
 
 .main {
@@ -17,31 +17,28 @@ body {
 /* ------------------------------ left ------------------------------ */
 
 .detail .left {
-    width: 900px;
+    width: 870px;
     height: 570px;
     float: left;
     background: #fff;
     position: relative;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
-
+    /*box-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);*/
 }
 
 .detail .left .image {
     width: 410px;
-    height: 550px;
+    height: 570px;
     float: left;
-    margin: 10px;
 }
 
 .detail .left .image img {
     width: 410px;
-    height: 550px;
+    height: 570px;
     object-fit: cover;
-    border: 1px solid #e7e7e7;
 }
 
 .detail .left .img-list {
-    width: 450px;
+    width: 440px;
     height: 570px;
     float: right;
     /*overflow: hidden;*/
@@ -49,17 +46,17 @@ body {
 }
 
 .detail .left .img-list .item {
-    width: 100px;
+    width: 97.5px;
     height: 130px;
     vertical-align: top;
     display: inline-block;
     margin: 10px 0 0 10px;
-    background-color: #ccc;
+    background-color: #e7e7e7;
     position: relative;
 }
 
 .detail .left .img-list .item img {
-    width: 100px;
+    width: 97.5px;
     height: 130px;
     object-fit: cover;
     border: 1px solid #e7e7e7;
@@ -72,17 +69,17 @@ body {
 
 /* ------------------------------ right ------------------------------ */
 .detail .right {
-    width: 360px;
+    width: 390px;
     height: 570px;
     position: relative;
     float: right;
 }
 
 .detail .right .info {
-    width: 360px;
+    width: 390px;
     height: 420px;
     background: #fff;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
+    /*box-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);*/
     position: relative;
 }
 
@@ -96,22 +93,27 @@ body {
     /*background-color: #cccccc;*/
 }
 
+.detail .right .info .btns button {
+    cursor: pointer;
+}
+
 .detail .right .info .btns span {
     padding: 0 3px 0 3px;
 }
 
 .detail .right .info .btns .join-btn {
-    flex: 1;
-    -webkit-flex: 1;
+    flex: 2;
+    -webkit-flex: 2;
     margin: 10px 5px 0 10px;
     background-color: #0B7DAF;
+    color: #fff;
     outline: none;
     border: none;
 }
 
 .detail .right .info .btns .pay-btn {
-    flex: 2;
-    -webkit-flex: 2;
+    flex: 3;
+    -webkit-flex: 3;
     margin: 10px 10px 0 5px;
 }
 
@@ -132,13 +134,15 @@ body {
 }
 
 .detail .right .info .content {
-    width: 300px;
-    margin: 50px 10px 0;
+    width: 340px;
+    margin: 100px 10px 0;
     text-align: left;
 }
 
 .detail .right .info .content h2 {
-    font-size: 18px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: normal;
 }
 
 .detail .right .info .content .info-tag {
@@ -170,15 +174,15 @@ body {
 }
 
 .detail .right .advert {
-    width: 360px;
+    width: 390px;
     height: 140px;
     margin: 10px 0 0;
     background: #37ADDB;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
+    /*box-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);*/
 }
 
 .detail .right .advert img {
-    width: 360px;
+    width: 390px;
     height: 140px;
     object-fit: cover;
 }
@@ -187,9 +191,9 @@ body {
 .explain {
     width: 1290px;
     height: 180px;
-    margin: 50px auto;
+    margin: 30px auto;
     background-color: #fff;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
+    /*box-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);*/
     overflow: hidden;
 }
 
@@ -197,4 +201,10 @@ body {
     width: 600px;
     height: 160px;
     margin: 10px;
+}
+
+.recommend-title {
+    font-size: 14px;
+    color: #222222;
+    margin-bottom: 5px;
 }
