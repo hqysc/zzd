@@ -220,7 +220,7 @@
                             <!-- 杂志图片 -->
                             <div class="form-group">
                                 <div class="col-sm-9 col-sm-offset-2">
-                                <#-- 图片 -->
+                                    <#-- 图片 -->
                                     <div class="image-input"></div>
                                 </div>
                             </div>
@@ -269,22 +269,6 @@
             </div>
         </div>
 
-    <#-- 杂志描述 -->
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>杂志描述</h5>
-                    </div>
-
-                    <div class="ibox-content no-padding">
-                    <#-- 富文本编辑器 -->
-                        <div class="prodesEdit">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- 全局js -->
@@ -301,10 +285,6 @@
     <script src="${ctx!}/hAdmin/js/plugins/validate/messages_zh.min.js"></script>
     <script src="${ctx!}/hAdmin/js/plugins/layer/layer.min.js"></script>
     <script src="${ctx!}/hAdmin/js/plugins/layer/laydate/laydate.js"></script>
-
-    <!-- SUMMERNOTE -->
-    <script src="${ctx!}/hAdmin/js/plugins/summernote/summernote.min.js"></script>
-    <script src="${ctx!}/hAdmin/js/plugins/summernote/summernote-zh-CN.js"></script>
 
     <script type="text/javascript">
         /*
@@ -347,8 +327,9 @@
                 ids += idArr[i] + ",";
                 indexs += indexArr[i] + 1 + ",";
             }
-            console.info("   id: " + ids);
-            console.info("index: " + indexs);
+
+            // console.info("   id: " + ids);
+            // console.info("index: " + indexs);
         }
 
         $(document).ready(function () {

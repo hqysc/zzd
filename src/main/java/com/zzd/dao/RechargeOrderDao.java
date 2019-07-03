@@ -19,4 +19,5 @@ public interface RechargeOrderDao extends JpaRepository<RechargeOrder, Integer> 
 
     Page<RechargeOrder> findByUserIdIn(List<Integer> userIds, Pageable pageable);
 
+    Page<RechargeOrder> findByUserId(int userId, Pageable pageable);
 }

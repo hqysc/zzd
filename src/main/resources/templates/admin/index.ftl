@@ -120,7 +120,23 @@
 
                     <!-- cut-off line -->
                     <li class="line dk"></li>
-                    <!-- 系统管理 -->
+                    <!-- 图库管理 -->
+                    <li>
+                        <a href="#">
+                            <i class="fa fa fa-user"></i>
+                            <span class="nav-label">图库管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="${ctx!}/admin/gallery/index">图片管理</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- cut-off line -->
+                    <li class="line dk"></li>
+                    <!-- 帮助中心管理 -->
                     <li>
                         <a href="#">
                             <i class="fa fa fa-user"></i>

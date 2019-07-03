@@ -288,8 +288,10 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public Page<Product> findByCheck(
-            List<Integer> categoryIds, List<Integer> yearsIds, List<Integer> countryIds, List<Integer> typeIds, Pageable pageable) {
-        Page<Product> productList = productDao.findByCategoryIdInAndYearsIdInAndCountryIdInAndTypeIdIn(categoryIds, yearsIds, countryIds, typeIds, pageable);
+            List<Integer> categoryIds, List<Integer> yearsIds, List<Integer> countryIds, List<Integer> typeIds, List<Integer> isHot, List<Integer> isFree, Pageable pageable) {
+
+        Page<Product> productList = productDao.findByCategoryIdInAndYearsIdInAndCountryIdInAndTypeIdInAndIsHotInAndIsFreeIn(
+                categoryIds, yearsIds, countryIds, typeIds, isHot, isFree, pageable);
         for(Product product : productList) {
             getCoverImage(product, 1);
             getInfo(product);

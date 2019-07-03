@@ -103,10 +103,10 @@ public class ProductController {
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public String detail(@PathVariable int id, ModelMap map) {
         Product product = productService.findById(id);
-        Advert advert = advertService.findProductAdvert();
+        List<Advert> advertList = advertService.findByAdvertType(1);
         List<Product> productList = productService.findRandByCategoryId(product.getCategoryId());
+        map.put("advertList", advertList);
         map.put("product", product);
-        map.put("advert", advert);
         map.put("productList", productList);
         return "zzd/product/detail";
     }
@@ -122,50 +122,58 @@ public class ProductController {
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String checkList(@RequestParam(value = "page", required = false) Integer pageNum,
+    public String checkList(@RequestParam(value = "page", defaultValue = "1") Integer pageNum,
                             @RequestParam(value = "categoryId", required = false) List<Integer> categoryIds,
                             @RequestParam(value = "yearsId", required = false) List<Integer> yearsIds,
                             @RequestParam(value = "countryId", required = false) List<Integer> countryIds,
-                            @RequestParam(value = "typeId", required = false) List<Integer> typeIds, ModelMap map) {
-        map.put("pageNum", pageNum); // 在没减1之前传到前端
-        if(pageNum != null && pageNum > 0) {
-            pageNum = pageNum - 1;
-        }else {
-            pageNum = 0;
+                            @RequestParam(value = "typeId", required = false) List<Integer> typeIds,
+                            @RequestParam(value = "isHot", required = false) List<Integer> isHot,
+                            @RequestParam(value = "isFree", required = false) List<Integer> isFree,
+                            ModelMap map) {
+
+        Pageable pageable = PageRequest.of(pageNum - 1, 24, Sort.by(Sort.Direction.DESC, "updateTime"));
+
+        // 如果isHot或者isFree为空 就传一个{0, 1}的集合
+        List<Integer> nullTypeList = new ArrayList<>();
+        for(int i=0; i<=1; i++) {
+            nullTypeList.add(i);
         }
-        Pageable pageable = PageRequest.of(pageNum, 24, Sort.by(Sort.Direction.DESC, "updateTime"));
 
         if(categoryIds == null || categoryIds.isEmpty()) { categoryIds = productCategoryService.findCategoryIds(); }
         if(yearsIds == null || yearsIds.isEmpty()) { yearsIds = yearsService.findYearsIds(); }
         if(countryIds == null || countryIds.isEmpty()) { countryIds = countryService.findCountryIds(); }
         if(typeIds == null || typeIds.isEmpty()) { typeIds = productTypeService.findTypeIds(); }
+        if(isHot == null || isHot.isEmpty()) { isHot = nullTypeList; }
+        if(isFree == null || isFree.isEmpty()) { isFree = nullTypeList; }
 
-        List<Product> productList = productService.findByCheck(categoryIds, yearsIds, countryIds, typeIds, pageable).getContent();
-        int pageTotal = (int) productService.findByCheck(categoryIds, yearsIds, countryIds, typeIds, pageable).getTotalPages();
+        List<Product> productList = productService.findByCheck(categoryIds, yearsIds, countryIds, typeIds, isHot, isFree, pageable).getContent();
+        int pageTotal = (int) productService.findByCheck(categoryIds, yearsIds, countryIds, typeIds, isHot, isFree, pageable).getTotalPages();
+
+        map.put("pageNum", pageNum); // 传到前端
         map.put("productList", productList);
         map.put("pageTotal", pageTotal);
-        getInfoList(map);
-        /*
-        if(pageNum > pageTotal - 1) {
-            return "redirect:/index";
-        }
-        */
+
+        getInfoList(map);   // 得到信息数据
+
         return "zzd/product/list";
     }
 
-
+    /**
+     * 搜索
+     * @param searchText
+     * @param pageNum
+     * @param map
+     * @return
+     */
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String searchList(@RequestParam(value = "searchText") String searchText,
-                             @RequestParam(value = "page", required = false) Integer pageNum, ModelMap map) {
-        map.put("pageNum", pageNum); // 在没减1之前传到前端
-        if(pageNum != null && pageNum > 0) {
-            pageNum = pageNum - 1;
-        }else {
-            pageNum = 0;
-        }
-        Pageable pageable = PageRequest.of(pageNum, 24, Sort.by(Sort.Direction.DESC, "updateTime"));
+                             @RequestParam(value = "page", defaultValue = "1") Integer pageNum, ModelMap map) {
+
+        Pageable pageable = PageRequest.of(pageNum - 1, 24, Sort.by(Sort.Direction.DESC, "updateTime"));
         List<Product> productList = productService.findByProductNameIsLike(searchText, pageable).getContent();
         int pageTotal = (int) productService.findByProductNameIsLike(searchText, pageable).getTotalPages();
+
+        map.put("pageNum", pageNum); // 传到前端
         map.put("productList", productList);
         map.put("pageTotal", pageTotal);
         getInfoList(map);

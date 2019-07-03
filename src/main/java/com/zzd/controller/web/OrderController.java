@@ -50,7 +50,7 @@ public class OrderController {
      * 直接支付时检查书币余额
      * @return
      */
-    @PostMapping("/checkPayCoin/{productId}")
+    @RequestMapping(value = "/checkPayCoin/{productId}", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult checkPayCoin(@PathVariable int productId, HttpServletRequest request, HttpServletResponse response) {
         User user = (User) request.getSession().getAttribute("user");

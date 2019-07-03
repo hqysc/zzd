@@ -1,6 +1,7 @@
 package com.zzd.dao;
 
 import com.zzd.entity.Gallery;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -63,5 +64,12 @@ public interface GalleryDao extends JpaRepository<Gallery, Integer> {
      * @return
      */
     List<Gallery> findByImageNameContaining(String keyword);
+
+    /**
+     * 模糊查询 分页
+     * @param keyword
+     * @return
+     */
+    Page<Gallery> findByImageNameContaining(String keyword, Pageable pageable);
 
 }

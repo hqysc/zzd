@@ -47,8 +47,8 @@ public class Product implements Serializable {
     /** 杂志 本数 */
     private Integer num;
 
-    /** 文件大小 */
-    private Integer fileSize;
+    /** 文件大小 小数 */
+    private Double fileSize;
 
     /** 价格 */
     private Double price;

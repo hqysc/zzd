@@ -14,6 +14,7 @@ public interface RechargeOrderService {
 
     Page<RechargeOrder> findAll(Pageable pageable);
 
-    Page<RechargeOrder> findByUserName(String userName, Pageable pageable);
+    Page<RechargeOrder> findByUserId(int userId, Pageable pageable);
 
+    Page<RechargeOrder> findByUserName(String userName, Pageable pageable);
 }

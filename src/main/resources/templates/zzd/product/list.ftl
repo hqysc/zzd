@@ -96,6 +96,25 @@
                     </ul>
                 </div>
 
+                <#-- 特殊选择 -->
+                    <div class="content">
+                        <p class="title">杂志选项：</p>
+                        <ul>
+                            <li>
+                                <label class="cate-radio">
+                                    <input type="checkbox" class="isHotCheck" value="1">
+                                    <p>推荐杂志</p>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="cate-radio">
+                                    <input type="checkbox" class="isFreeCheck" value="1">
+                                    <p>免费杂志</p>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
             </div>
             <div class="bottom"></div>
         </div>
@@ -106,7 +125,7 @@
                 <div class="item">
                     <div class="item-inner">
                         <div class="item-img">
-                            <a href="/product/detail/${product.id}">
+                            <a href="/product/detail/${product.id}" target="_blank">
                                 <img src="${product.gallery.thumbImageSrc}" alt="${product.gallery.imageName}">
                             </a>
                         </div>
@@ -132,10 +151,10 @@
                         <div class="item-bar">
                             <div class="bar-content">
                                 <div class="info">
-                                    <a href="/product/detail/${product.id}">${product.productName}</a>
+                                    <a href="/product/detail/${product.id}" target="_blank">${product.productName}</a>
                                 </div>
                                 <div class="join">
-                                    <a href="">
+                                    <a href="javascript:void(0);" onclick="javascript:addToCart(${product.id})">
                                         <div class="btn-join"></div>
                                     </a>
                                 </div>
@@ -149,9 +168,41 @@
         <#-- page -->
         <div class="page">
             <ul>
+                <!-- 向左 -->
                 <#if pageNum gt 1>
                     <a href="javascript:toPage(${pageNum - 1});"><li><span> < </span></li></a>
                 </#if>
+
+                <#if pageNum-4 gte 1>
+                    <a href="javascript:toPage(1);"><li>1</li></a>
+                </#if>
+
+                <!-- 省略号 左 -->
+                <#if pageNum-5 gte 1>
+                    <a href="javascript:void (0);"><li>...</li></a>
+                </#if>
+
+                <!-- list -->
+                <#list pageNum-3..pageNum+3 as index>
+                    <#-- +3 -->
+                    <#if index lte pageTotal && index gte 1>
+                        <#if index == pageNum>
+                            <a href="javascript:toPage(${index});"><li class="page-selected">${index}</li></a>
+                        <#else>
+                            <a href="javascript:toPage(${index});"><li>${index}</li></a>
+                        </#if>
+                    </#if>
+                </#list>
+
+                <#if pageNum+5 lte pageTotal>
+                    <a href="javascript:void (0);"><li>...</li></a>
+                </#if>
+
+                <#if pageNum+4 lte pageTotal>
+                    <a href="javascript:toPage(1);"><li>${pageTotal}</li></a>
+                </#if>
+
+                <!-- 向右 -->
                 <#if pageNum lt pageTotal>
                     <a href="javascript:toPage(${pageNum + 1});"><li><span> > </span></li></a>
                 </#if>
@@ -173,6 +224,8 @@
             setChecked('yearsCheck', 'yearsId');
             setChecked('countryCheck', 'countryId');
             setChecked('typeCheck', 'typeId');
+            setChecked('isHotCheck', 'isHot');
+            setChecked('isFreeCheck', 'isFree');
 
             $("#checkDiv").change(function() {
                 var url = "";
@@ -180,7 +233,9 @@
                         getCheckVal('categoryCheck', 'categoryId') +
                         getCheckVal('yearsCheck', 'yearsId') +
                         getCheckVal('countryCheck', 'countryId') +
-                        getCheckVal('typeCheck', 'typeId');
+                        getCheckVal('typeCheck', 'typeId') +
+                        getCheckVal('isHotCheck', 'isHot') +
+                        getCheckVal('isFreeCheck', 'isFree');
                 window.location.href = url;
             });
         });
@@ -257,6 +312,25 @@
             if (r != null) return unescape(r[2]); return null; //返回参数值
         }
 
+        // 添加到我的书架
+        function addToCart(productId) {
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: '${ctx!}/cart/add/' + productId,
+                success: function(msg) {
+                    if(msg.code == 0) {
+                        layer.msg(msg.message, {time: 1000});
+                    }else if(msg.code == -1) {
+                        layer.confirm('请先登录', {
+                            btn : [ '登录', '取消' ]//按钮
+                        }, function(index) {
+                            window.location.href="${ctx!}/user/login";
+                        });
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>

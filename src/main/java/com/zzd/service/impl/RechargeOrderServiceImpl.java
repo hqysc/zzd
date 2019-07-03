@@ -40,6 +40,15 @@ public class RechargeOrderServiceImpl implements RechargeOrderService {
     }
 
     @Override
+    public Page<RechargeOrder> findByUserId(int userId, Pageable pageable) {
+        Page<RechargeOrder> orderList = rechargeOrderDao.findByUserId(userId, pageable);
+        for(RechargeOrder order : orderList) {
+            getUser(order);
+        }
+        return orderList;
+    }
+
+    @Override
     public Page<RechargeOrder> findByUserName(String userName, Pageable pageable) {
         List<Integer> userIds = new ArrayList<>();
         List<User> userList = userDao.findByUserNameContaining(userName);

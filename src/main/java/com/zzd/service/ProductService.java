@@ -125,7 +125,8 @@ public interface ProductService {
      * @return
      */
     Page<Product> findByCheck(
-            List<Integer> categoryIds, List<Integer> yearsIds, List<Integer> countryIds, List<Integer> typeIds, Pageable pageable);
+            List<Integer> categoryIds, List<Integer> yearsIds, List<Integer> countryIds, List<Integer> typeIds,
+            List<Integer> isHot, List<Integer> isFree, Pageable pageable);
 
     /**
      * 模糊搜索

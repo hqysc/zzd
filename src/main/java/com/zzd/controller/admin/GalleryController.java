@@ -1,5 +1,6 @@
 package com.zzd.controller.admin;
 
+import com.zzd.common.JsonResult;
 import com.zzd.controller.BaseController;
 import com.zzd.entity.Gallery;
 import com.zzd.entity.pojo.ResultBean;
@@ -10,10 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -53,17 +54,70 @@ public class GalleryController extends BaseController {
         return "admin/gallery/upload";
     }
 
+    @RequestMapping({ "", "/index" })
+    public String index() {
+        return "admin/gallery/list";
+    }
+
     /**
      * List
      * BootStrap Table
      * @return
      */
-    @RequestMapping("list.do")
+    @RequestMapping("/list")
+    @ResponseBody
     public ResultBean<List<Gallery>> findAll() {
-        Pageable pageable = getPageable();
-        int total = (int) galleryService.findAll(pageable).getTotalElements();
-        List<Gallery> list = galleryService.findAll(pageable).getContent();
+        String searchText = request.getParameter("search");
+        Pageable pageable = getPageableAndSort(Sort.by(Sort.Direction.DESC, "createTime"));
+        int total;
+        List<Gallery> list;
+        if(searchText != null) {
+            total = (int) galleryService.findByImageNameContaining(searchText, pageable).getTotalElements();
+            list = galleryService.findByImageNameContaining(searchText, pageable).getContent();
+        }else {
+            total = (int) galleryService.findAll(pageable).getTotalElements();
+            list = galleryService.findAll(pageable).getContent();
+        }
         return new ResultBean<>(list, total, getPageable().getPageSize(), getPageable().getPageNumber());
+    }
+
+    /**
+     * 删除
+     * @param id
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult delete(@PathVariable int id, ModelMap map) {
+        try {
+            deleteImage(id);    // 删除图片
+            galleryService.delete(id);  // 删除数据
+        } catch (Exception e) {
+            return JsonResult.failure(e.getMessage());
+        }
+        return JsonResult.success();
+    }
+
+    /**
+     * 文件删除
+     * @param id
+     */
+    public void deleteImage(Integer id) {
+        Gallery gallery = galleryService.findById(id);
+        String fileName = gallery.getImageName();
+        String thumbFileName = "thumbnails - " + fileName;   // 处理后文件名
+
+        File targetFile = new File(path + fileName);     //创建文件对象
+        File thumbFile = new File(path + thumbFileName);   // 缩略图
+
+        if(targetFile.exists()) {   // 原图
+            targetFile.delete();
+        }
+
+        if(thumbFile.exists()) {    // 缩率图
+            thumbFile.delete();
+        }
     }
 
     /**
@@ -93,6 +147,34 @@ public class GalleryController extends BaseController {
     }
 
     /**
+     * 检测
+     * @return
+     */
+    @PostMapping("/test/{id}")
+    @ResponseBody
+    public String test(@PathVariable int id, ModelMap modelMap) {
+        Gallery gallery = galleryService.findById(id);
+        String fileName = gallery.getImageName();
+        String thumbFileName = "thumbnails - " + fileName;   // 处理后文件名
+
+        File targetFile = new File(path + fileName);     //创建文件对象
+        File thumbFile = new File(path + thumbFileName);   // 缩略图
+
+        if(targetFile.exists()) {
+            /*
+            if (targetFile.delete()) {
+                return 1;
+            } else {
+                return 2;
+            }
+             */
+            return fileName;
+        }else {
+            return "0";
+        }
+    }
+
+    /**
      * 杂志图片批量上传 入库
      * 去掉后缀名
      * @param imageType
@@ -117,7 +199,7 @@ public class GalleryController extends BaseController {
             LOGGER.debug("文件上传: " + path + fileName);  // 日志打印
             LOGGER.debug("文件上传: " + path + thumbFileName);  // 日志打印
 
-            File tagetFile = new File(path + fileName);//创建文件对象
+            File tagetFile = new File(path + fileName);     //创建文件对象
             File thumbFile = new File(path + thumbFileName);   // 缩略图
 
             String imageSrc = imgVisitPath + fileName; // 获得图片访问路径

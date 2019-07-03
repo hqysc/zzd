@@ -131,8 +131,8 @@
                         if(data.gallery != null) {
                             innerDiv.append(
                                     "<div class='item-img'>" +
-                                        "<a href='/product/detail/" + data.id + "'>" +
-                                            "<img src='" + data.gallery.thumbImageSrc + "'alt='" + data.gallery.imageName + "'>" +
+                                        "<a href='/product/detail/" + data.id + "' target='_blank'>" +
+                                            '<img src="' + data.gallery.thumbImageSrc + '" alt="' + data.gallery.imageName + '" >' +
                                         "</a>" +
                                     "</div>"
                             );
@@ -153,7 +153,7 @@
                                     "<div class='bar-content'>" +
                                         "<div class='info'><a href='/product/detail/" + data.id + "'>" + data.productName + "</a></div>" +
                                         "<div class='join'>" +
-                                            "<a href='javascript:addToCart(" + data.id + ")'><div class='btn-join'></div></a>" +
+                                            "<a href='javascript:addToCart(" + data.id + ")' target='_blank'><div class='btn-join'></div></a>" +
                                         "</div>" +
                                     "</div>" +
                                 "</div>"
@@ -193,9 +193,9 @@
                                     if(product.gallery != null) {
                                         innerDiv.append(
                                                 "<div class='item-img'>" +
-                                                "<a href='/product/detail/" + product.id + "'>" +
-                                                "<img src='" + product.gallery.thumbImageSrc + "'alt='" + product.gallery.imageName + "'>" +
-                                                "</a>" +
+                                                    "<a href='/product/detail/" + product.id + "' target='_blank'>" +
+                                                        '<img src="' + product.gallery.thumbImageSrc + '" alt="' + product.gallery.imageName + '" >' +
+                                                    "</a>" +
                                                 "</div>"
                                         );
                                     }
@@ -213,7 +213,7 @@
                                     innerDiv.append(
                                             "<div class='item-bar'>" +
                                                 "<div class='bar-content'>" +
-                                                    "<div class='info'><a href='/product/detail/" + product.id + "'>" + product.productName + "</a></div>" +
+                                                    "<div class='info'><a href='/product/detail/" + product.id + "' target='_blank'>" + product.productName + "</a></div>" +
                                                     "<div class='join'>" +
                                                         "<a href='javascript:addToCart(" + product.id + ")'><div class='btn-join'></div></a>" +
                                                     "</div>" +

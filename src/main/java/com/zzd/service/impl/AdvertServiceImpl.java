@@ -46,24 +46,14 @@ public class AdvertServiceImpl implements AdvertService {
      * @return
      */
     @Override
-    public List<Advert> findIndexAdvert() {
-        List<Advert> advertList = advertDao.findAdvertByAdvertType(0, Sort.by(Sort.Direction.ASC, "sortId"));
+    public List<Advert> findByAdvertType(int advertType) {
+        List<Advert> advertList = advertDao.findAdvertByAdvertType(advertType, Sort.by(Sort.Direction.ASC, "sortId"));
         for(Advert advert : advertList) {
             getGallery(advert);
         }
         return advertList;
     }
 
-    /**
-     * 查询杂志广告
-     * @return
-     */
-    @Override
-    public Advert findProductAdvert() {
-        Advert advert = advertDao.findAdvertById(1);
-        getGallery(advert);
-        return advert;
-    }
 
     @Override
     public Page<Advert> findAll(Pageable pageable) {

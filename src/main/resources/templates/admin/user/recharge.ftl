@@ -86,6 +86,7 @@
                 rules: {
                     addCoin: {
                         required: true,
+                        number: true
                     },
                 },
                 messages: {},

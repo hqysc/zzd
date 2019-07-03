@@ -185,10 +185,15 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
     /**
      * 多条件查询
      * In
-     * categoryId yearsId countryId typeId
+     * categoryId yearsId countryId typeId isHot isFree
      * @return
      */
+    Page<Product> findByCategoryIdInAndYearsIdInAndCountryIdInAndTypeIdInAndIsHotInAndIsFreeIn(
+            List<Integer> categoryIds, List<Integer> yearsIds, List<Integer> countryIds, List<Integer> typeIds,
+            List<Integer> isHot, List<Integer> isFree, Pageable pageable);
+
+    /*
     Page<Product> findByCategoryIdInAndYearsIdInAndCountryIdInAndTypeIdIn(
             List<Integer> categoryIds, List<Integer> yearsIds, List<Integer> countryIds, List<Integer> typeIds, Pageable pageable);
-
+    */
 }

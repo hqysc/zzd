@@ -60,4 +60,11 @@ public interface ProductImageDao extends JpaRepository<ProductImage, Integer> {
      */
     List<ProductImage> findProductImageByProductId(int productId);
 
+    /**
+     * 根据图片ID查询
+     * @param galleryId
+     * @return
+     */
+    List<ProductImage> findByGalleryId(int galleryId);
+
 }

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="${ctx!}/css/nav.css">
     <link rel="stylesheet" href="${ctx!}/css/bread-crumbs.css">
 </head>
+
 <body>
     <nav class="nav">
         <div class="inner">

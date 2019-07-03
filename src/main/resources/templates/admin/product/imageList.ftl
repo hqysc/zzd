@@ -36,7 +36,7 @@
                                 <#-- 搜索 -->
                                 <form id="frm" action="${ctx!}/admin/product/imageList">
                                     <div class="col-md-4 col-sm-4 col-sm-offset-4">
-                                        <input type="text" class="form-control" id="searchText" name="searchText">
+                                        <input type="text" class="form-control" id="searchText" name="searchText" autocomplete="off">
                                     </div>
                                     <div class="col-md-2 col-sm-2">
                                         <button class="btn btn-warning" id="finish" type="submit"><i class="fa fa-plus"></i>&nbsp;搜索</button>
@@ -104,10 +104,10 @@
             });
 
             for(var i = 0; i < id_array.length; i++) {
-                imgSrc = '/images/' + name_array[i];
+                imgSrc = "/images/" + name_array[i];
                 parent.$(".img-sortable").append("<li class='sort-li'>"
                         + "<button class='sort-delete'><span class='glyphicon glyphicon-remove-circle'></span></button>"
-                        + "<img src='" + imgSrc + "'>"
+                        + '<img src="' + imgSrc + '">'
                         + "<p>" + name_array[i] + "</p>"
                         + "<input class='sort-gallery' type='hidden' value='"+ id_array[i] +"'>"
                         + "</li>"
